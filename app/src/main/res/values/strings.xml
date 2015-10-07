@@ -1,9 +1,9 @@
 <resources>
+    <!-- Labels-->
     <string name="app_name">RecyclerBindableAdapter</string>
-    <!-- MainActivity-->
-    <string name="main_activity_linear_example_button">Linear example with headers and footers</string>
-    <string name="main_activity_grid_example_button">Grid example</string>
-    <string name="main_activity_simple_example_button">Grid SimpleAdapter example</string>
+    <string name="linear_example_label">Linear example with headers and footers</string>
+    <string name="grid_example_label">Grid example</string>
+    <string name="simple_example_label">Grid SimpleAdapter example</string>
 
     <!-- Linear example-->
     <string name="linear_example_header_1">Header 1</string>

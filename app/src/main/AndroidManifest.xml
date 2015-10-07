@@ -16,9 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".linear.LinearExampleActivity"/>
-        <activity android:name=".grid.GridExampleActivity"/>
-        <activity android:name=".simple.SimpleExampleActivity"/>
+        <activity android:name=".linear.LinearExampleActivity"
+                  android:label="@string/linear_example_label"/>
+        <activity android:name=".grid.GridExampleActivity"
+                  android:label="@string/grid_example_label" />
+        <activity android:name=".simple.SimpleExampleActivity"
+                  android:label="@string/simple_example_label" />
     </application>
 
 </manifest>
