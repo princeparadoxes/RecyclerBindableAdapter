@@ -17,4 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/main_activity_buttons_height"
         android:text="@string/main_activity_grid_example_button"/>
+
+    <Button
+        android:id="@+id/main_activity_simple_example_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_activity_buttons_height"
+        android:text="@string/main_activity_simple_example_button"/>
 </LinearLayout>

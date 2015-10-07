@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.princeparadoxes.danil.recyclerbindableadapter.grid.GridExampleActivity;
 import com.princeparadoxes.danil.recyclerbindableadapter.linear.LinearExampleActivity;
+import com.princeparadoxes.danil.recyclerbindableadapter.simple.SimpleExampleActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -20,6 +21,11 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.main_activity_grid_example_button)
     protected void onGridButtonClick() {
         this.startActivity(new Intent(this, GridExampleActivity.class));
+    }
+
+    @OnClick(R.id.main_activity_simple_example_button)
+    protected void onSimpleButtonClick() {
+        this.startActivity(new Intent(this, SimpleExampleActivity.class));
     }
 
     @Override

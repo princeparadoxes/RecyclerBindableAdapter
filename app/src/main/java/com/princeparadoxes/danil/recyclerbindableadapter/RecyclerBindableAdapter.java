@@ -2,7 +2,6 @@ package com.princeparadoxes.danil.recyclerbindableadapter;
 
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -25,7 +24,12 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
 
     private RecyclerView.LayoutManager manager;
     private LayoutInflater inflater;
-
+    private GridLayoutManager.SpanSizeLookup mSpanSizeLookup = new GridLayoutManager.SpanSizeLookup() {
+        @Override
+        public int getSpanSize(int position) {
+            return getGridSpan(position);
+        }
+    };
 
     public int getRealItemCount() {
         return items.size();
@@ -141,7 +145,6 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         return footers.size() > 0 && (position >= getRealItemCount() + footers.size());
     }
 
-
     protected VH onCreteItemViewHolder(ViewGroup parent, int type) {
         if (inflater == null) {
             this.inflater = LayoutInflater.from(parent.getContext());
@@ -186,13 +189,6 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
                     StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
         }
     }
-
-    private GridLayoutManager.SpanSizeLookup mSpanSizeLookup = new GridLayoutManager.SpanSizeLookup() {
-        @Override
-        public int getSpanSize(int position) {
-            return getGridSpan(position);
-        }
-    };
 
     public int getGridSpan(int position) {
         if (isHeader(position) || isFooter(position)) {
@@ -246,14 +242,6 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         }
     }
 
-    //our header/footer RecyclerView.ViewHolder is just a FrameLayout
-    public static class HeaderFooterViewHolder extends RecyclerView.ViewHolder {
-
-        public HeaderFooterViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
-
     public int getHeadersCount() {
         return headers.size();
     }
@@ -263,13 +251,24 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
     }
 
     abstract protected int getItemType(int position);
+
     abstract protected void onBindItemViewHolder(VH viewHolder, int position, int type);
+
     protected abstract VH viewHolder(View view, int type);
+
     protected abstract
     @LayoutRes
     int layoutId(int type);
 
     public interface SpanItemInterface {
         int getGridSpan();
+    }
+
+    //our header/footer RecyclerView.ViewHolder is just a FrameLayout
+    public static class HeaderFooterViewHolder extends RecyclerView.ViewHolder {
+
+        public HeaderFooterViewHolder(View itemView) {
+            super(itemView);
+        }
     }
 }
