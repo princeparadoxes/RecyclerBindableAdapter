@@ -1,17 +1,10 @@
 package com.princeparadoxes.danil.recyclerbindableadapter.linear;
 
-import android.content.Context;
-import android.support.annotation.IntDef;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
 import com.princeparadoxes.danil.recyclerbindableadapter.MainViewHolder;
 import com.princeparadoxes.danil.recyclerbindableadapter.R;
 import com.princeparadoxes.danil.recyclerbindableadapter.RecyclerBindableAdapter;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by Danil on 02.10.2015.
