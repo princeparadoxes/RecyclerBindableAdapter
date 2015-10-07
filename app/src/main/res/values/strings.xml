@@ -5,7 +5,7 @@
     <string name="main_activity_grid_example_button">Grid example</string>
     <!-- LinearExample-->
     <string name="linear_example_header_1">Header 1</string>
-    <string name="linear_example_header_2">Header 1</string>
+    <string name="linear_example_header_2">Header 2</string>
     <string name="linear_example_footer_1">Footer 1</string>
     <string name="linear_example_footer_2">Footer 2</string>
     <string name="linear_example_item_move_to_top">Move to top</string>

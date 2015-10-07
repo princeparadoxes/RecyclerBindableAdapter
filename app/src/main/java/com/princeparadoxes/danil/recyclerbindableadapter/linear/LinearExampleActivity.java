@@ -44,7 +44,7 @@ public class LinearExampleActivity extends AppCompatActivity implements MainView
         linearExampleRecycler.setLayoutManager(layoutManager);
         linearExampleRecycler.setItemAnimator(new DefaultItemAnimator());
 
-        linearExampleAdapter = new LinearExampleAdapter(this, layoutManager);
+        linearExampleAdapter = new LinearExampleAdapter();
         linearExampleAdapter.setActionListener(this);
         linearExampleAdapter.addHeader(inflateHeaderFooter(headerOne));
         linearExampleAdapter.addHeader(inflateHeaderFooter(headerTwo));

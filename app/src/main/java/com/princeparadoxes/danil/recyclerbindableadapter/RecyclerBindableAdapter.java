@@ -14,61 +14,62 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         extends RecyclerViewHeaderFooterAdapter<T, VH> {
 
     private LayoutInflater inflater;
-    private List<T> dataset = new ArrayList<>();
+    private List<T> items = new ArrayList<>();
 
-    public RecyclerBindableAdapter(Context context, RecyclerView.LayoutManager manager) {
-        super(manager);
-        this.inflater = LayoutInflater.from(context);
+    public RecyclerBindableAdapter() {
+        super();
     }
 
     @Override
     public int getRealItemCount() {
-        return dataset.size();
+        return items.size();
     }
 
     public T getItem(int position) {
-        return dataset.get(position);
+        return items.get(position);
     }
 
+    //@TODO test
     public void add(int position, T item) {
-        dataset.add(position, item);
+        items.add(position, item);
         notifyItemInserted(position);
     }
 
     public void add(T item) {
-        dataset.add(item);
-        notifyItemInserted(dataset.size() - 1 + getHeadersCount());
+        items.add(item);
+        notifyItemInserted(items.size() - 1 + getHeadersCount());
     }
 
     public void addAll(List<? extends T> items) {
-        final int size = dataset.size();
-        dataset.addAll(items);
+        final int size = this.items.size();
+        this.items.addAll(items);
         notifyItemRangeInserted(size + getHeadersCount(), items.size());
     }
 
+    //@TODO test
     public void set(int position, T item) {
-        dataset.set(position, item);
+        items.set(position, item);
         notifyItemInserted(position + getHeadersCount());
     }
 
     public void removeChild(int position) {
-        dataset.remove(position);
+        items.remove(position);
         notifyItemRemoved(position + getHeadersCount());
         int positionStart = position + getHeadersCount();
-        int itemCount = dataset.size() - position;
+        int itemCount = items.size() - position;
         notifyItemRangeChanged(positionStart, itemCount);
     }
 
     public void clear() {
-        final int size = dataset.size();
-        dataset.clear();
+        final int size = items.size();
+        items.clear();
         notifyItemRangeRemoved(getHeadersCount(), size);
     }
 
     public void moveChildTo(int fromPosition, int toPosition) {
-        if (toPosition != -1 && toPosition < dataset.size()) {
-            final T item = dataset.remove(fromPosition);
-            dataset.add(toPosition, item);
+        if (toPosition != -1 && toPosition < items.size()) {
+            final T item = items.remove(fromPosition);
+            items.add(toPosition, item);
             notifyItemMoved(getHeadersCount() + fromPosition, getHeadersCount() + toPosition);
             int positionStart = fromPosition < toPosition ? fromPosition : toPosition;
             int itemCount = Math.abs(fromPosition - toPosition) + 1;
@@ -78,6 +79,9 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
 
     @Override
     protected VH onCreteItemViewHolder(ViewGroup parent, int type) {
+        if (inflater == null) {
+            this.inflater = LayoutInflater.from(parent.getContext());
+        }
         return viewHolder(inflater.inflate(layoutId(type), parent, false), type);
     }
 

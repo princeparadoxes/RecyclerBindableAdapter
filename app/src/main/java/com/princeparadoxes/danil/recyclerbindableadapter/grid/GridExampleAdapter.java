@@ -14,8 +14,8 @@ import com.princeparadoxes.danil.recyclerbindableadapter.RecyclerBindableAdapter
 public class GridExampleAdapter extends RecyclerBindableAdapter<Integer, MainViewHolder> {
     private MainViewHolder.ActionListener actionListener;
 
-    public GridExampleAdapter(Context context, RecyclerView.LayoutManager manager) {
-        super(context, manager);
+    public GridExampleAdapter() {
+        super();
     }
 
     @Override

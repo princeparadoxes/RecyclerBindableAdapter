@@ -19,8 +19,8 @@ import butterknife.ButterKnife;
 public class LinearExampleAdapter extends RecyclerBindableAdapter<Integer, MainViewHolder> {
     private MainViewHolder.ActionListener actionListener;
 
-    public LinearExampleAdapter(Context context, RecyclerView.LayoutManager manager) {
-        super(context, manager);
+    public LinearExampleAdapter() {
+        super();
     }
 
     @Override

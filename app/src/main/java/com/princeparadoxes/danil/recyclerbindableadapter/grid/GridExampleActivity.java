@@ -6,25 +6,20 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.TextView;
 
 import com.princeparadoxes.danil.recyclerbindableadapter.MainViewHolder;
 import com.princeparadoxes.danil.recyclerbindableadapter.R;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class GridExampleActivity extends AppCompatActivity implements MainViewHolder.ActionListener {
 
+    private static final int COUNT_ITEMS = 20;
     @Bind(R.id.linear_example_recycle)
     RecyclerView linearExampleRecycler;
-
-    private static final int COUNT_ITEMS = 20;
-
     private GridExampleAdapter gridExampleAdapter;
 
     @Override
@@ -36,7 +31,7 @@ public class GridExampleActivity extends AppCompatActivity implements MainViewHo
         linearExampleRecycler.setLayoutManager(layoutManager);
         linearExampleRecycler.setItemAnimator(new DefaultItemAnimator());
 
-        gridExampleAdapter = new GridExampleAdapter(this, layoutManager);
+        gridExampleAdapter = new GridExampleAdapter();
         gridExampleAdapter.setActionListener(this);
         linearExampleRecycler.setAdapter(gridExampleAdapter);
     }
