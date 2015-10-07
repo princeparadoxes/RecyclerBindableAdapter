@@ -10,11 +10,11 @@
         android:id="@+id/main_activity_linear_example_button"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:text="Linear Example"/>
+        android:text="Linear example with headers and footers"/>
 
     <Button
         android:id="@+id/main_activity_grid_example_button"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:text="Grid Example"/>
+        android:text="Grid example"/>
 </LinearLayout>

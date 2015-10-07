@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.princeparadoxes.danil.recyclerbindableadapter.MainViewHolder;
 import com.princeparadoxes.danil.recyclerbindableadapter.R;
@@ -35,26 +36,6 @@ public class GridExampleActivity extends AppCompatActivity implements MainViewHo
         linearExampleRecycler.setLayoutManager(layoutManager);
         linearExampleRecycler.setItemAnimator(new DefaultItemAnimator());
         linearExampleRecycler.setAdapter(gridExampleAdapter);
-        initHeader();
-    }
-
-    private void initHeader() {
-        View header = getLayoutInflater().inflate(R.layout.linear_example_header, linearExampleRecycler, false);
-        gridExampleAdapter.addHeader(header);
-        View headerAddButton = header.findViewById(R.id.linear_example_header_add);
-        View headerClearButton = header.findViewById(R.id.linear_example_header_clear);
-        headerAddButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gridExampleAdapter.add(new Random().nextInt(100));
-            }
-        });
-        headerClearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gridExampleAdapter.clear();
-            }
-        });
     }
 
     @Override

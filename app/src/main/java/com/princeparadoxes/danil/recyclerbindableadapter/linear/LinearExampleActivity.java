@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.princeparadoxes.danil.recyclerbindableadapter.MainViewHolder;
 import com.princeparadoxes.danil.recyclerbindableadapter.R;
@@ -35,26 +36,32 @@ public class LinearExampleActivity extends AppCompatActivity implements MainView
         linearExampleRecycler.setLayoutManager(layoutManager);
         linearExampleRecycler.setItemAnimator(new DefaultItemAnimator());
         linearExampleRecycler.setAdapter(linearExampleAdapter);
-        initHeader();
+        linearExampleAdapter.addHeader(inflateHeaderFooter("Header 1"));
+        linearExampleAdapter.addHeader(inflateHeaderFooter("Header 2"));
+        linearExampleAdapter.addFooter(inflateHeaderFooter("Footer 1"));
+        linearExampleAdapter.addFooter(inflateHeaderFooter("Footer 2"));
     }
 
-    private void initHeader() {
-        View header = getLayoutInflater().inflate(R.layout.linear_example_header, linearExampleRecycler, false);
-        linearExampleAdapter.addHeader(header);
-        View headerAddButton = header.findViewById(R.id.linear_example_header_add);
-        View headerClearButton = header.findViewById(R.id.linear_example_header_clear);
-        headerAddButton.setOnClickListener(new View.OnClickListener() {
+    private View inflateHeaderFooter(String tittle) {
+        View headerFooter = getLayoutInflater().inflate(R.layout.linear_example_header,
+                linearExampleRecycler, false);
+        TextView tittleView = (TextView) headerFooter.findViewById(R.id.linear_example_header_tittle);
+        View addButton = headerFooter.findViewById(R.id.linear_example_header_add);
+        View clearButton = headerFooter.findViewById(R.id.linear_example_header_clear);
+        tittleView.setText(tittle);
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 linearExampleAdapter.add(new Random().nextInt(100));
             }
         });
-        headerClearButton.setOnClickListener(new View.OnClickListener() {
+        clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 linearExampleAdapter.clear();
             }
         });
+        return headerFooter;
     }
 
     @Override

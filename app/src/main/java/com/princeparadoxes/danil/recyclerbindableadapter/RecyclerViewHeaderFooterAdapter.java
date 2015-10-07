@@ -109,7 +109,7 @@ public abstract class RecyclerViewHeaderFooterAdapter<T, VH extends RecyclerView
             //add our view to a header view and display it
             prepareHeaderFooter((HeaderFooterViewHolder) vh, v);
         } else if (isFooter(position)) {
-            View v = mFooters.get(position - getItemCount() - mHeaders.size());
+            View v = mFooters.get(position - getRealItemCount() - mFooters.size());
             //add our view to a footer view and display it
             prepareHeaderFooter((HeaderFooterViewHolder) vh, v);
         } else {
@@ -144,7 +144,7 @@ public abstract class RecyclerViewHeaderFooterAdapter<T, VH extends RecyclerView
     }
 
     private boolean isFooter(int position) {
-        return mFooters.size() > 0 && (position >= mHeaders.size() + getItemCount());
+        return mFooters.size() > 0 && (position >= getRealItemCount() + mFooters.size());
     }
 
 
@@ -228,7 +228,7 @@ public abstract class RecyclerViewHeaderFooterAdapter<T, VH extends RecyclerView
 
     abstract protected int getRealItemCount();
 
-    public static interface SpanItemInterface {
+    public interface SpanItemInterface {
         int getGridSpan();
     }
 }
