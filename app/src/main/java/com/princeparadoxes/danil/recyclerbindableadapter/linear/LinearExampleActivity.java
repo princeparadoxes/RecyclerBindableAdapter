@@ -33,6 +33,8 @@ public class LinearExampleActivity extends AppCompatActivity implements MainView
     String footerTwo;
     private LinearExampleAdapter linearExampleAdapter;
 
+    private int lastItemTittle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +64,8 @@ public class LinearExampleActivity extends AppCompatActivity implements MainView
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                linearExampleAdapter.add(linearExampleAdapter.getRealItemCount());
+                lastItemTittle++;
+                linearExampleAdapter.add(lastItemTittle);
             }
         });
         clearButton.setOnClickListener(new View.OnClickListener() {
@@ -79,8 +82,9 @@ public class LinearExampleActivity extends AppCompatActivity implements MainView
         super.onResume();
         ArrayList<Integer> list = new ArrayList<>();
         for (int i = 0; i < COUNT_ITEMS; i++) {
-            list.add(i);
+            list.add(i + 1);
         }
+        lastItemTittle = COUNT_ITEMS;
         linearExampleAdapter.addAll(list);
     }
 

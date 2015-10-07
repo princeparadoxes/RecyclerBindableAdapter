@@ -23,6 +23,8 @@ public class GridExampleActivity extends AppCompatActivity implements MainViewHo
     @Bind(R.id.linear_example_recycle)
     RecyclerView linearExampleRecycler;
 
+    private static final int COUNT_ITEMS = 20;
+
     private GridExampleAdapter gridExampleAdapter;
 
     @Override
@@ -31,10 +33,11 @@ public class GridExampleActivity extends AppCompatActivity implements MainViewHo
         setContentView(R.layout.linear_example);
         ButterKnife.bind(this);
         LinearLayoutManager layoutManager = new GridLayoutManager(this, 2);
-        gridExampleAdapter = new GridExampleAdapter(this, layoutManager);
-        gridExampleAdapter.setActionListener(this);
         linearExampleRecycler.setLayoutManager(layoutManager);
         linearExampleRecycler.setItemAnimator(new DefaultItemAnimator());
+
+        gridExampleAdapter = new GridExampleAdapter(this, layoutManager);
+        gridExampleAdapter.setActionListener(this);
         linearExampleRecycler.setAdapter(gridExampleAdapter);
     }
 
@@ -42,8 +45,8 @@ public class GridExampleActivity extends AppCompatActivity implements MainViewHo
     protected void onResume() {
         super.onResume();
         ArrayList<Integer> list = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            list.add(new Random().nextInt(100));
+        for (int i = 0; i < COUNT_ITEMS; i++) {
+            list.add(i + 1);
         }
         gridExampleAdapter.addAll(list);
     }
