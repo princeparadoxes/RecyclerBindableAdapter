@@ -9,8 +9,8 @@ import com.princeparadoxes.danil.recyclerbindableadapter.RecyclerBindableAdapter
 /**
  * Created by Danil on 02.10.2015.
  */
-public class GridExampleAdapter extends RecyclerBindableAdapter<Integer, MainViewHolder> {
-    private MainViewHolder.ActionListener actionListener;
+public class GridExampleAdapter extends RecyclerBindableAdapter<Integer, GridViewHolder> {
+    private GridViewHolder.ActionListener actionListener;
 
     public GridExampleAdapter() {
         super();
@@ -22,8 +22,8 @@ public class GridExampleAdapter extends RecyclerBindableAdapter<Integer, MainVie
     }
 
     @Override
-    protected MainViewHolder viewHolder(View view, int type) {
-        return new MainViewHolder(view);
+    protected GridViewHolder viewHolder(View view, int type) {
+        return new GridViewHolder(view);
     }
 
     @Override
@@ -32,11 +32,11 @@ public class GridExampleAdapter extends RecyclerBindableAdapter<Integer, MainVie
     }
 
     @Override
-    protected void onBindItemViewHolder(MainViewHolder viewHolder, final int position, int type) {
+    protected void onBindItemViewHolder(GridViewHolder viewHolder, final int position, int type) {
         viewHolder.bindView(getItem(position), position, actionListener);
     }
 
-    public void setActionListener(MainViewHolder.ActionListener actionListener) {
+    public void setActionListener(GridViewHolder.ActionListener actionListener) {
         this.actionListener = actionListener;
     }
 

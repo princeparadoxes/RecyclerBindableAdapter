@@ -14,5 +14,13 @@
     <!-- Grid example-->
     <dimen name="grid_example_recycler_padding">4dp</dimen>
     <dimen name="grid_example_item_margin">4dp</dimen>
+    <dimen name="grid_example_linear_padding">2dp</dimen>
+    <dimen name="grid_example_tittle_width_height">32dp</dimen>
+
+    <!-- Grid example-->
+    <dimen name="simple_example_recycler_padding">4dp</dimen>
+    <dimen name="simple_example_item_margin">4dp</dimen>
+    <dimen name="simple_example_linear_padding">2dp</dimen>
+    <dimen name="simple_example_tittle_width_height">32dp</dimen>
 
 </resources>

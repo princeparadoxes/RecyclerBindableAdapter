@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/linear_example_recycle"
+        android:id="@+id/grid_example_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/grid_example_recycler_padding"/>

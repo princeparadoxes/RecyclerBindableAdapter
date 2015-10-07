@@ -8,6 +8,6 @@
         android:id="@+id/simple_example_recycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/grid_example_recycler_padding"/>
+        android:padding="@dimen/simple_example_recycler_padding"/>
 
 </FrameLayout>

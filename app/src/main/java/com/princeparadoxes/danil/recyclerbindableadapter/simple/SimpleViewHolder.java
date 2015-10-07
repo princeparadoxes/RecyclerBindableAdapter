@@ -15,8 +15,8 @@ import butterknife.OnClick;
  */
 public class SimpleViewHolder extends BindableViewHolder {
 
-    @Bind(R.id.simple_example_item_text)
-    TextView text;
+    @Bind(R.id.simple_example_item_tittle)
+    TextView tittle;
 
     private int position;
     private SimpleActionListener simpleActionListener;
@@ -31,7 +31,7 @@ public class SimpleViewHolder extends BindableViewHolder {
         super.bindView(position, item, actionListener);
         this.position = position;
         simpleActionListener = (SimpleActionListener) actionListener;
-        text.setText(String.valueOf(item));
+        tittle.setText(String.valueOf(item));
     }
 
     @OnClick(R.id.simple_example_item_move_to_top)

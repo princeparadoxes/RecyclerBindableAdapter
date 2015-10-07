@@ -3,7 +3,8 @@
     <!-- MainActivity-->
     <string name="main_activity_linear_example_button">Linear example with headers and footers</string>
     <string name="main_activity_grid_example_button">Grid example</string>
-    <string name="main_activity_simple_example_button">Simple example</string>
+    <string name="main_activity_simple_example_button">Grid SimpleAdapter example</string>
+
     <!-- Linear example-->
     <string name="linear_example_header_1">Header 1</string>
     <string name="linear_example_header_2">Header 2</string>
@@ -15,11 +16,17 @@
     <string name="linear_example_item_down">Down</string>
     <string name="linear_example_header_add">Add</string>
     <string name="linear_example_header_clear">Clear</string>
+
     <!-- Grid example-->
     <string name="grid_example_item_move_to_top">Move to top</string>
     <string name="grid_example_item_remove">Remove</string>
     <string name="grid_example_item_up">Up</string>
     <string name="grid_example_item_down">Down</string>
+
     <!-- Simple example-->
+    <string name="simple_example_item_move_to_top">Move to top</string>
+    <string name="simple_example_item_remove">Remove</string>
+    <string name="simple_example_item_up">Up</string>
+    <string name="simple_example_item_down">Down</string>
 
 </resources>

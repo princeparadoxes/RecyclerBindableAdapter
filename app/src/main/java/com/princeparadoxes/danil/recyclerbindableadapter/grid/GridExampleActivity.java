@@ -15,25 +15,25 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class GridExampleActivity extends AppCompatActivity implements MainViewHolder.ActionListener {
+public class GridExampleActivity extends AppCompatActivity implements GridViewHolder.ActionListener {
 
     private static final int COUNT_ITEMS = 20;
-    @Bind(R.id.linear_example_recycle)
-    RecyclerView linearExampleRecycler;
+    @Bind(R.id.grid_example_recycler)
+    RecyclerView gridExampleRecycler;
     private GridExampleAdapter gridExampleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.linear_example);
+        setContentView(R.layout.grid_example);
         ButterKnife.bind(this);
         LinearLayoutManager layoutManager = new GridLayoutManager(this, 2);
-        linearExampleRecycler.setLayoutManager(layoutManager);
-        linearExampleRecycler.setItemAnimator(new DefaultItemAnimator());
+        gridExampleRecycler.setLayoutManager(layoutManager);
+        gridExampleRecycler.setItemAnimator(new DefaultItemAnimator());
 
         gridExampleAdapter = new GridExampleAdapter();
         gridExampleAdapter.setActionListener(this);
-        linearExampleRecycler.setAdapter(gridExampleAdapter);
+        gridExampleRecycler.setAdapter(gridExampleAdapter);
     }
 
     @Override
@@ -52,17 +52,17 @@ public class GridExampleActivity extends AppCompatActivity implements MainViewHo
     }
 
     @Override
-    public void remove(int position) {
+    public void OnRemove(int position) {
         gridExampleAdapter.removeChild(position);
     }
 
     @Override
-    public void up(int position) {
+    public void OnUp(int position) {
         gridExampleAdapter.moveChildTo(position, position - 1);
     }
 
     @Override
-    public void down(int position) {
+    public void OnDown(int position) {
         gridExampleAdapter.moveChildTo(position, position + 1);
     }
 }

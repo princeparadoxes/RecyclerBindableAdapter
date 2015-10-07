@@ -16,11 +16,11 @@
             android:layout_height="0dp"
             android:layout_weight="0.5"
             android:orientation="horizontal"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp">
+            android:paddingLeft="@dimen/grid_example_linear_padding"
+            android:paddingRight="@dimen/grid_example_linear_padding">
 
             <Button
-                android:id="@+id/linear_example_item_move_to_top"
+                android:id="@+id/grid_example_item_move_to_top"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
@@ -28,7 +28,7 @@
                 android:text="@string/grid_example_item_move_to_top"/>
 
             <Button
-                android:id="@+id/linear_example_item_remove"
+                android:id="@+id/grid_example_item_remove"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
@@ -42,11 +42,11 @@
             android:layout_height="0dp"
             android:layout_weight="0.5"
             android:orientation="horizontal"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp">
+            android:paddingLeft="@dimen/grid_example_linear_padding"
+            android:paddingRight="@dimen/grid_example_linear_padding">
 
             <Button
-                android:id="@+id/linear_example_item_up"
+                android:id="@+id/grid_example_item_up"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
@@ -54,7 +54,7 @@
                 android:text="@string/grid_example_item_up"/>
 
             <Button
-                android:id="@+id/linear_example_item_down"
+                android:id="@+id/grid_example_item_down"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
@@ -66,9 +66,9 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/linear_example_item_text"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:id="@+id/grid_example_item_tittle"
+        android:layout_width="@dimen/grid_example_tittle_width_height"
+        android:layout_height="@dimen/grid_example_tittle_width_height"
         android:layout_gravity="center"
         android:background="@drawable/grid_example_tittle_bg"
         android:gravity="center"/>
