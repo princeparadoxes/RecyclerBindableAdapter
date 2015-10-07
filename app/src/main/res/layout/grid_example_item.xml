@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp">
+    android:layout_margin="@dimen/grid_example_item_margin">
 
     <TextView
         android:id="@+id/linear_example_item_text"
@@ -28,7 +28,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="Move to top"/>
+                android:text="@string/grid_example_item_move_to_top"/>
 
             <Button
                 android:id="@+id/linear_example_item_remove"
@@ -36,7 +36,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="Remove"/>
+                android:text="@string/grid_example_item_remove"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -50,7 +51,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="Up"/>
+                android:text="@string/grid_example_item_up"/>
 
             <Button
                 android:id="@+id/linear_example_item_down"
@@ -58,7 +59,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:gravity="center"
-                android:text="Down"/>
+                android:text="@string/grid_example_item_down"/>
+
         </LinearLayout>
+
     </LinearLayout>
+
 </com.princeparadoxes.danil.recyclerbindableadapter.views.SquareCardView>

@@ -2,19 +2,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:dividerPadding="4dp"
+    android:dividerPadding="@dimen/main_activity_divider_padding"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="@dimen/main_activity_padding">
 
     <Button
         android:id="@+id/main_activity_linear_example_button"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:text="Linear example with headers and footers"/>
+        android:layout_height="@dimen/main_activity_buttons_height"
+        android:text="@string/main_activity_linear_example_button"/>
 
     <Button
         android:id="@+id/main_activity_grid_example_button"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:text="Grid example"/>
+        android:layout_height="@dimen/main_activity_buttons_height"
+        android:text="@string/main_activity_grid_example_button"/>
 </LinearLayout>

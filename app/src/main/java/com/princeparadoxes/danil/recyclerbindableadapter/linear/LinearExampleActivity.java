@@ -1,8 +1,8 @@
 package com.princeparadoxes.danil.recyclerbindableadapter.linear;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,16 +13,24 @@ import com.princeparadoxes.danil.recyclerbindableadapter.MainViewHolder;
 import com.princeparadoxes.danil.recyclerbindableadapter.R;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import butterknife.Bind;
+import butterknife.BindString;
 import butterknife.ButterKnife;
 
 public class LinearExampleActivity extends AppCompatActivity implements MainViewHolder.ActionListener {
 
+    private static final int COUNT_ITEMS = 10;
     @Bind(R.id.linear_example_recycle)
     RecyclerView linearExampleRecycler;
-
+    @BindString(R.string.linear_example_header_1)
+    String headerOne;
+    @BindString(R.string.linear_example_header_2)
+    String headerTwo;
+    @BindString(R.string.linear_example_footer_1)
+    String footerOne;
+    @BindString(R.string.linear_example_footer_2)
+    String footerTwo;
     private LinearExampleAdapter linearExampleAdapter;
 
     @Override
@@ -31,20 +39,22 @@ public class LinearExampleActivity extends AppCompatActivity implements MainView
         setContentView(R.layout.linear_example);
         ButterKnife.bind(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        linearExampleAdapter = new LinearExampleAdapter(this, layoutManager);
-        linearExampleAdapter.setActionListener(this);
         linearExampleRecycler.setLayoutManager(layoutManager);
         linearExampleRecycler.setItemAnimator(new DefaultItemAnimator());
+
+        linearExampleAdapter = new LinearExampleAdapter(this, layoutManager);
+        linearExampleAdapter.setActionListener(this);
+        linearExampleAdapter.addHeader(inflateHeaderFooter(headerOne));
+        linearExampleAdapter.addHeader(inflateHeaderFooter(headerTwo));
+        linearExampleAdapter.addFooter(inflateHeaderFooter(footerOne));
+        linearExampleAdapter.addFooter(inflateHeaderFooter(footerTwo));
         linearExampleRecycler.setAdapter(linearExampleAdapter);
-        linearExampleAdapter.addHeader(inflateHeaderFooter("Header 1"));
-        linearExampleAdapter.addHeader(inflateHeaderFooter("Header 2"));
-        linearExampleAdapter.addFooter(inflateHeaderFooter("Footer 1"));
-        linearExampleAdapter.addFooter(inflateHeaderFooter("Footer 2"));
     }
 
     private View inflateHeaderFooter(String tittle) {
-        View headerFooter = getLayoutInflater().inflate(R.layout.linear_example_header,
-                linearExampleRecycler, false);
+        CardView headerFooter = (CardView) getLayoutInflater().inflate(
+                R.layout.linear_example_header, linearExampleRecycler, false);
+        headerFooter.setUseCompatPadding(true);
         TextView tittleView = (TextView) headerFooter.findViewById(R.id.linear_example_header_tittle);
         View addButton = headerFooter.findViewById(R.id.linear_example_header_add);
         View clearButton = headerFooter.findViewById(R.id.linear_example_header_clear);
@@ -52,7 +62,7 @@ public class LinearExampleActivity extends AppCompatActivity implements MainView
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                linearExampleAdapter.add(new Random().nextInt(100));
+                linearExampleAdapter.add(linearExampleAdapter.getRealItemCount());
             }
         });
         clearButton.setOnClickListener(new View.OnClickListener() {
@@ -68,8 +78,8 @@ public class LinearExampleActivity extends AppCompatActivity implements MainView
     protected void onResume() {
         super.onResume();
         ArrayList<Integer> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add(new Random().nextInt(100));
+        for (int i = 0; i < COUNT_ITEMS; i++) {
+            list.add(i);
         }
         linearExampleAdapter.addAll(list);
     }
