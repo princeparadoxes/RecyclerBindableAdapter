@@ -7,7 +7,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.princeparadoxes.danil.recyclerbindableadapter.MainViewHolder;
 import com.princeparadoxes.danil.recyclerbindableadapter.R;
 
 import java.util.ArrayList;

@@ -2,7 +2,6 @@ package com.princeparadoxes.danil.recyclerbindableadapter.grid;
 
 import android.view.View;
 
-import com.princeparadoxes.danil.recyclerbindableadapter.MainViewHolder;
 import com.princeparadoxes.danil.recyclerbindableadapter.R;
 import com.princeparadoxes.danil.recyclerbindableadapter.RecyclerBindableAdapter;
 

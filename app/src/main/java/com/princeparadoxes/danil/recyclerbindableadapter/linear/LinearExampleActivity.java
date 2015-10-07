@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.princeparadoxes.danil.recyclerbindableadapter.MainViewHolder;
 import com.princeparadoxes.danil.recyclerbindableadapter.R;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import butterknife.Bind;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 
-public class LinearExampleActivity extends AppCompatActivity implements MainViewHolder.ActionListener {
+public class LinearExampleActivity extends AppCompatActivity implements LinearViewHolder.ActionListener {
 
     private static final int COUNT_ITEMS = 10;
     @Bind(R.id.linear_example_recycle)
@@ -94,17 +93,17 @@ public class LinearExampleActivity extends AppCompatActivity implements MainView
     }
 
     @Override
-    public void remove(int position) {
+    public void OnRemove(int position) {
         linearExampleAdapter.removeChild(position);
     }
 
     @Override
-    public void up(int position) {
+    public void OnUp(int position) {
         linearExampleAdapter.moveChildTo(position, position - 1);
     }
 
     @Override
-    public void down(int position) {
+    public void OnDown(int position) {
         linearExampleAdapter.moveChildTo(position, position + 1);
     }
 }
