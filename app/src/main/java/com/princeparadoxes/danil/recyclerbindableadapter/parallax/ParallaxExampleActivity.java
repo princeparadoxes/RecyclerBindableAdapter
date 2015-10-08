@@ -58,6 +58,7 @@ public class ParallaxExampleActivity extends AppCompatActivity {
         for (int i = 0; i < COUNT_ITEMS; i++) {
             list.add(String.valueOf(i + 1));
         }
+        parallaxExampleAdapter.clear();
         parallaxExampleAdapter.addAll(list);
     }
 }

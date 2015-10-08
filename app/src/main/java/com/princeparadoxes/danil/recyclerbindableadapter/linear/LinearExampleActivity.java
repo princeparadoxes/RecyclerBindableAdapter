@@ -84,6 +84,7 @@ public class LinearExampleActivity extends AppCompatActivity implements LinearVi
             list.add(i + 1);
         }
         lastItemTittle = COUNT_ITEMS;
+        linearExampleAdapter.clear();
         linearExampleAdapter.addAll(list);
     }
 

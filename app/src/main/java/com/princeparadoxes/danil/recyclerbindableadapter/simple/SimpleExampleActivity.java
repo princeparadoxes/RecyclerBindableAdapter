@@ -44,6 +44,7 @@ public class SimpleExampleActivity extends AppCompatActivity implements SimpleVi
         for (int i = 0; i < COUNT_ITEMS; i++) {
             list.add(i + 1);
         }
+        simpleExampleAdapter.clear();
         simpleExampleAdapter.addAll(list);
     }
 

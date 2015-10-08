@@ -42,6 +42,7 @@ public class GridExampleActivity extends AppCompatActivity implements GridViewHo
         for (int i = 0; i < COUNT_ITEMS; i++) {
             list.add(i + 1);
         }
+        gridExampleAdapter.clear();
         gridExampleAdapter.addAll(list);
     }
 
