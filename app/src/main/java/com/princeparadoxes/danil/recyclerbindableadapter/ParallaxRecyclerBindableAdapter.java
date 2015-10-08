@@ -53,7 +53,7 @@ public abstract class ParallaxRecyclerBindableAdapter<T, VH extends RecyclerView
             view.startAnimation(anim);
         }
         view.setClipY(Math.round(ofCalculated));
-        if (parallaxScroll != null) {
+        if (parallaxScroll != null && !isFooter) {
             float left = Math.min(1, ((ofCalculated) / (view.getHeight() * SCROLL_MULTIPLIER)));
             parallaxScroll.onParallaxScroll(left, of, view);
         }

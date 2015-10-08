@@ -2,7 +2,6 @@ package com.princeparadoxes.danil.recyclerbindableadapter.parallax;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.princeparadoxes.danil.recyclerbindableadapter.R;
-import com.princeparadoxes.danil.recyclerbindableadapter.utils.BitmapUtils;
+import com.princeparadoxes.danil.recyclerbindableadapter.SimpleParallaxRecyclerBindableAdapter;
 
 import java.util.ArrayList;
 
@@ -23,7 +22,7 @@ public class ParallaxExampleActivity extends AppCompatActivity {
     private static final int COUNT_ITEMS = 5;
     @Bind(R.id.parallax_example_recycle)
     RecyclerView parallaxExampleRecycler;
-    private ParallaxExampleAdapter parallaxExampleAdapter;
+    private SimpleParallaxRecyclerBindableAdapter<String, ParallaxViewHolder> parallaxExampleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,9 @@ public class ParallaxExampleActivity extends AppCompatActivity {
         parallaxExampleRecycler.setLayoutManager(layoutManager);
         parallaxExampleRecycler.setItemAnimator(new DefaultItemAnimator());
 
-        parallaxExampleAdapter = new ParallaxExampleAdapter();
+        parallaxExampleAdapter =
+                new SimpleParallaxRecyclerBindableAdapter<>(R.layout.parallax_example_item,
+                        ParallaxViewHolder.class);
         parallaxExampleAdapter.addHeader(inflateHeaderFooter(false));
         parallaxExampleAdapter.addFooter(inflateHeaderFooter(true));
         parallaxExampleRecycler.setAdapter(parallaxExampleAdapter);

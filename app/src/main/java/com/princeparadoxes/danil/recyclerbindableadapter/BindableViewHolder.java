@@ -6,13 +6,13 @@ import android.view.View;
 /**
  * Created by Danil on 08.10.2015.
  */
-public abstract class BindableViewHolder extends RecyclerView.ViewHolder {
+public abstract class BindableViewHolder<T> extends RecyclerView.ViewHolder {
 
     public BindableViewHolder(View itemView) {
         super(itemView);
     }
 
-    public void bindView(final int position, final Object item, final ActionListener actionListener) {
+    public void bindView(final int position, final T item, final ActionListener actionListener) {
         if (actionListener != null) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -20,14 +20,6 @@ public abstract class BindableViewHolder extends RecyclerView.ViewHolder {
                     actionListener.OnItemClickListener(position, item);
                 }
             });
-        }
-    }
-
-    public BindableViewHolder getMe() {
-        try {
-            return (BindableViewHolder) getClass().newInstance();
-        } catch (Exception ex) {
-            return null;
         }
     }
 
