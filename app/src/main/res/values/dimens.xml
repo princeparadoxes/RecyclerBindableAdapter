@@ -23,4 +23,10 @@
     <dimen name="simple_example_linear_padding">2dp</dimen>
     <dimen name="simple_example_tittle_width_height">32dp</dimen>
 
+    <!-- Parallax example-->
+    <dimen name="parallax_example_recycler_padding">4dp</dimen>
+    <dimen name="parallax_example_header_height">256dp</dimen>
+    <dimen name="parallax_example_item_margin">4dp</dimen>
+    <dimen name="parallax_example_item_height">64dp</dimen>
+
 </resources>

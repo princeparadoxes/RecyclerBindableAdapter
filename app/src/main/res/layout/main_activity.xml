@@ -23,4 +23,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/main_activity_buttons_height"
         android:text="@string/simple_example_label"/>
+
+    <Button
+        android:id="@+id/main_activity_parallax_example_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_activity_buttons_height"
+        android:text="@string/parallax_example_label"/>
 </LinearLayout>

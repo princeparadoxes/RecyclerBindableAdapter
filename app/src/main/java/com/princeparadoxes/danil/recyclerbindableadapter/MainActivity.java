@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.princeparadoxes.danil.recyclerbindableadapter.grid.GridExampleActivity;
 import com.princeparadoxes.danil.recyclerbindableadapter.linear.LinearExampleActivity;
+import com.princeparadoxes.danil.recyclerbindableadapter.parallax.ParallaxExampleActivity;
 import com.princeparadoxes.danil.recyclerbindableadapter.simple.SimpleExampleActivity;
 
 import butterknife.ButterKnife;
@@ -26,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.main_activity_simple_example_button)
     protected void onSimpleButtonClick() {
         this.startActivity(new Intent(this, SimpleExampleActivity.class));
+    }
+
+    @OnClick(R.id.main_activity_parallax_example_button)
+    protected void onParallaxButtonClick() {
+        this.startActivity(new Intent(this, ParallaxExampleActivity.class));
     }
 
     @Override

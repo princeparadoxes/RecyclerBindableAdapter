@@ -22,6 +22,8 @@
                   android:label="@string/grid_example_label" />
         <activity android:name=".simple.SimpleExampleActivity"
                   android:label="@string/simple_example_label" />
+        <activity android:name=".parallax.ParallaxExampleActivity"
+                  android:label="@string/parallax_example_label"/>
     </application>
 
 </manifest>

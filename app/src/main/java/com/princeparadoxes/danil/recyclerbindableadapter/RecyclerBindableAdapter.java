@@ -246,8 +246,16 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         return headers.size();
     }
 
+    protected View getHeader(int location) {
+        return headers.get(location);
+    }
+
     public int getFootersCount() {
         return footers.size();
+    }
+
+    protected View getFooter(int location) {
+        return footers.get(location);
     }
 
     abstract protected int getItemType(int position);
