@@ -3,6 +3,7 @@ package com.princeparadoxes.danil.recyclerbindableadapter;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.widget.FrameLayout;
 
 /**
@@ -11,30 +12,28 @@ import android.widget.FrameLayout;
 public class ParallaxContainer extends FrameLayout {
 
     private int offset;
-    private boolean shouldClip;
-    private boolean isFooter;
+    private final boolean isParallax;
+    private final boolean isFooter;
 
-    public ParallaxContainer(Context context, boolean shouldClick) {
+    public ParallaxContainer(Context context, boolean shouldClick, boolean isFooter) {
         super(context);
-        shouldClip = shouldClick;
+        isParallax = shouldClick;
+        this.isFooter = isFooter;
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
-        if (shouldClip) {
-            int left = getLeft();
-            int right = getRight();
+    protected void dispatchDraw(@NonNull Canvas canvas) {
+        if (isParallax) {
             int top = isFooter ? - offset : 0;
             int bottom = isFooter ? getBottom() : getBottom() + offset;
-            Rect rect = new Rect(left, top, right, bottom);
+            Rect rect = new Rect(getLeft(), top, getRight(), bottom);
             canvas.clipRect(rect);
         }
         super.dispatchDraw(canvas);
     }
 
-    public void setClipY(int offset, boolean isFooter) {
+    public void setClipY(int offset) {
         this.offset = offset;
-        this.isFooter = isFooter;
         invalidate();
     }
 }
