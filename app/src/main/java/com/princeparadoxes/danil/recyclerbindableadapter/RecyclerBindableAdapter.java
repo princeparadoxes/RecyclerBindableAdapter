@@ -111,7 +111,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
             //add our view to a header view and display it
             prepareHeaderFooter((HeaderFooterViewHolder) vh, v);
         } else if (isFooter(position)) {
-            View v = footers.get(position - getRealItemCount() - footers.size());
+            View v = footers.get(position - getRealItemCount() - getHeadersCount());
             //add our view to a footer view and display it
             prepareHeaderFooter((HeaderFooterViewHolder) vh, v);
         } else {
@@ -142,7 +142,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
     }
 
     private boolean isFooter(int position) {
-        return footers.size() > 0 && (position >= getRealItemCount() + footers.size());
+        return footers.size() > 0 && (position >= getHeadersCount() + getRealItemCount());
     }
 
     protected VH onCreteItemViewHolder(ViewGroup parent, int type) {

@@ -14,8 +14,8 @@ public abstract class ParallaxRecyclerBindableAdapter<T, VH extends RecyclerView
 
     private static final float SCROLL_MULTIPLIER = 0.5f;
     private ParallaxContainer header;
+    private ParallaxContainer footer;
     private OnParallaxScroll parallaxScroll;
-    private RecyclerView recyclerView;
     private boolean shouldClipView = true;
 
     /**
@@ -23,23 +23,23 @@ public abstract class ParallaxRecyclerBindableAdapter<T, VH extends RecyclerView
      *
      * @param of offset in px
      */
-    public void translateHeader(float of) {
+    public void translateView(float of, ParallaxContainer view, boolean isFooter) {
         float ofCalculated = of * SCROLL_MULTIPLIER;
+        ofCalculated = isFooter ? -ofCalculated : ofCalculated;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            header.setTranslationY(ofCalculated);
+            view.setTranslationY(ofCalculated);
         } else {
             TranslateAnimation anim = new TranslateAnimation(0, 0, ofCalculated, ofCalculated);
             anim.setFillAfter(true);
             anim.setDuration(0);
-            header.startAnimation(anim);
+            view.startAnimation(anim);
         }
-        header.setClipY(Math.round(ofCalculated));
+        view.setClipY(Math.round(ofCalculated), isFooter);
         if (parallaxScroll != null) {
-            float left = Math.min(1, ((ofCalculated) / (header.getHeight() * SCROLL_MULTIPLIER)));
-            parallaxScroll.onParallaxScroll(left, of, header);
+            float left = Math.min(1, ((ofCalculated) / (view.getHeight() * SCROLL_MULTIPLIER)));
+            parallaxScroll.onParallaxScroll(left, of, view);
         }
     }
-
 
     @Override
     public VH onCreateViewHolder(ViewGroup viewGroup, int type) {
@@ -47,26 +47,41 @@ public abstract class ParallaxRecyclerBindableAdapter<T, VH extends RecyclerView
         if (type != TYPE_HEADER && type != TYPE_FOOTER) {
             return (VH) onCreteItemViewHolder(viewGroup, type);
             //else we have a header/footer
-        } else {
+        } else if (type == TYPE_HEADER) {
             //create a new ParallaxContainer
-            header = new ParallaxContainer(viewGroup.getContext(), shouldClipView);
+            header = new ParallaxContainer(viewGroup.getContext(), true);
             //make sure it fills the space
             header.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT));
             return (VH) new HeaderFooterViewHolder(header);
+        } else {
+            //create a new ParallaxContainer
+            footer = new ParallaxContainer(viewGroup.getContext(), shouldClipView);
+//            make sure it fills the space
+            footer.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT));
+            return (VH) new HeaderFooterViewHolder(footer);
         }
     }
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-        this.recyclerView = recyclerView;
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (header != null) {
-                    translateHeader(ParallaxRecyclerBindableAdapter.this.recyclerView.computeVerticalScrollOffset());
+                    translateView(recyclerView.computeVerticalScrollOffset(), header, false);
+//                    translateView(0, header);
+
+                }
+                if (footer != null) {
+                    int range = recyclerView.computeVerticalScrollRange();
+                    int extend = recyclerView.computeVerticalScrollExtent();
+                    int offset = recyclerView.computeVerticalScrollOffset();
+                    translateView(range - (extend + offset), footer, true);
+//                    translateView(0, footer);
                 }
             }
         });
@@ -77,7 +92,6 @@ public abstract class ParallaxRecyclerBindableAdapter<T, VH extends RecyclerView
     }
 
     /**
-     * Defines if we will clip the layout or not. MUST BE CALLED BEFORE {@link #setParallaxHeader(android.view.View, android.support.v7.widget.RecyclerView)}
      *
      * @param shouldClickView
      */
@@ -99,11 +113,5 @@ public abstract class ParallaxRecyclerBindableAdapter<T, VH extends RecyclerView
          * @param parallax
          */
         void onParallaxScroll(float percentage, float offset, View parallax);
-    }
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(View itemView) {
-            super(itemView);
-        }
     }
 }

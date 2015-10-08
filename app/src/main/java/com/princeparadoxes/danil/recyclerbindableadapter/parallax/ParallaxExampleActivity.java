@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.princeparadoxes.danil.recyclerbindableadapter.R;
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
 
 public class ParallaxExampleActivity extends AppCompatActivity {
 
-    private static final int COUNT_ITEMS = 10;
+    private static final int COUNT_ITEMS = 5;
     @Bind(R.id.parallax_example_recycle)
     RecyclerView parallaxExampleRecycler;
     private ParallaxExampleAdapter parallaxExampleAdapter;
@@ -34,15 +35,19 @@ public class ParallaxExampleActivity extends AppCompatActivity {
         parallaxExampleRecycler.setItemAnimator(new DefaultItemAnimator());
 
         parallaxExampleAdapter = new ParallaxExampleAdapter();
-        parallaxExampleAdapter.addHeader(inflateHeaderFooter());
+        parallaxExampleAdapter.addHeader(inflateHeaderFooter(false));
+        parallaxExampleAdapter.addFooter(inflateHeaderFooter(true));
         parallaxExampleRecycler.setAdapter(parallaxExampleAdapter);
     }
 
-    private View inflateHeaderFooter() {
-        ImageView imageView = (ImageView) getLayoutInflater().inflate(
+    private View inflateHeaderFooter(boolean isFooter) {
+        ViewGroup viewGroup = (ViewGroup) getLayoutInflater().inflate(
                 R.layout.parallax_example_header, parallaxExampleRecycler, false);
-        imageView.setImageResource(R.mipmap.ic_launcher);
-        return imageView;
+        ImageView imageView = (ImageView) viewGroup.findViewById(R.id.parallax_example_header_image);
+        if (isFooter) {
+            imageView.setRotation(180);
+        }
+        return viewGroup;
     }
 
     @Override
