@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.princeparadoxes.danil.recyclerbindableadapter.views.SquareCardView
+<com.princeparadoxes.danil.recyclerbindableadapter.views.FourSquareCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -73,4 +73,4 @@
         android:background="@drawable/grid_example_tittle_bg"
         android:gravity="center"/>
 
-</com.princeparadoxes.danil.recyclerbindableadapter.views.SquareCardView>
+</com.princeparadoxes.danil.recyclerbindableadapter.views.FourSquareCardView>

@@ -8,7 +8,10 @@ import com.princeparadoxes.danil.recyclerbindableadapter.RecyclerBindableAdapter
 /**
  * Created by Danil on 02.10.2015.
  */
-public class GridExampleAdapter extends RecyclerBindableAdapter<Integer, GridViewHolder> {
+public class GridExampleAdapter extends RecyclerBindableAdapter<GridExampleItem, GridViewHolder> {
+    public final static int FIRST_TYPE = 0;
+    public final static int SECOND_TYPE = 1;
+
     private GridViewHolder.ActionListener actionListener;
 
     public GridExampleAdapter() {
@@ -17,7 +20,11 @@ public class GridExampleAdapter extends RecyclerBindableAdapter<Integer, GridVie
 
     @Override
     protected int layoutId(int type) {
-        return R.layout.grid_example_item;
+        if (type == FIRST_TYPE) {
+            return R.layout.grid_example_first_type_item;
+        } else {
+            return R.layout.grid_example_second_type_item;
+        }
     }
 
     @Override
@@ -27,12 +34,25 @@ public class GridExampleAdapter extends RecyclerBindableAdapter<Integer, GridVie
 
     @Override
     protected int getItemType(int position) {
-        return 0;
+        return getItem(position).getType();
     }
 
     @Override
     protected void onBindItemViewHolder(GridViewHolder viewHolder, final int position, int type) {
-        viewHolder.bindView(getItem(position), position, actionListener);
+        if (type == FIRST_TYPE) {
+            viewHolder.bindViewFirstType(getItem(position), position, actionListener);
+        } else if (type == SECOND_TYPE) {
+            viewHolder.bindViewSecondType(getItem(position), position, actionListener);
+        }
+    }
+
+    @Override
+    protected int getGridSpan(int position) {
+        if(SECOND_TYPE != getItemType(position)) {
+            return super.getGridSpan(position);
+        } else {
+            return getMaxGridSpan();
+        }
     }
 
     public void setActionListener(GridViewHolder.ActionListener actionListener) {

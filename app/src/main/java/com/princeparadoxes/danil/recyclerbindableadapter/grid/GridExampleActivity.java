@@ -17,9 +17,13 @@ import butterknife.ButterKnife;
 public class GridExampleActivity extends AppCompatActivity implements GridViewHolder.ActionListener {
 
     private static final int COUNT_ITEMS = 20;
+
     @Bind(R.id.grid_example_recycler)
     RecyclerView gridExampleRecycler;
+
     private GridExampleAdapter gridExampleAdapter;
+    private int lastItemTittle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +42,15 @@ public class GridExampleActivity extends AppCompatActivity implements GridViewHo
     @Override
     protected void onResume() {
         super.onResume();
-        ArrayList<Integer> list = new ArrayList<>();
+        ArrayList<GridExampleItem> list = new ArrayList<>();
         for (int i = 0; i < COUNT_ITEMS; i++) {
-            list.add(i + 1);
+            if (i == 4 || i == 7) {
+                list.add(new GridExampleItem(i + 1, GridExampleAdapter.SECOND_TYPE));
+            } else {
+                list.add(new GridExampleItem(i + 1, GridExampleAdapter.FIRST_TYPE));
+            }
         }
+        lastItemTittle = COUNT_ITEMS;
         gridExampleAdapter.clear();
         gridExampleAdapter.addAll(list);
     }
@@ -64,5 +73,21 @@ public class GridExampleActivity extends AppCompatActivity implements GridViewHo
     @Override
     public void OnDown(int position) {
         gridExampleAdapter.moveChildTo(position, position + 1);
+    }
+
+    @Override
+    public void OnAddTo(int position) {
+        lastItemTittle++;
+        GridExampleItem item = new GridExampleItem(lastItemTittle, GridExampleAdapter.FIRST_TYPE);
+        gridExampleAdapter.add(position, item);
+    }
+
+    @Override
+    public void OnSet(int position) {
+        lastItemTittle++;
+        if (position != 0) {
+            GridExampleItem item = new GridExampleItem(lastItemTittle, GridExampleAdapter.FIRST_TYPE);
+            gridExampleAdapter.set(position - 1, item);
+        }
     }
 }

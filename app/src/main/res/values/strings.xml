@@ -2,7 +2,7 @@
     <!-- Labels-->
     <string name="app_name">RecyclerBindableAdapter</string>
     <string name="linear_example_label">Linear example with headers and footers</string>
-    <string name="grid_example_label">Grid example</string>
+    <string name="grid_example_label">Grid two types example</string>
     <string name="simple_example_label">Grid SimpleAdapter example</string>
     <string name="parallax_example_label">Parallax example</string>
 
@@ -23,6 +23,8 @@
     <string name="grid_example_item_remove">Remove</string>
     <string name="grid_example_item_up">Up</string>
     <string name="grid_example_item_down">Down</string>
+    <string name="grid_example_item_add_to">Add to previous position</string>
+    <string name="grid_example_item_set">Set to previous position</string>
 
     <!-- Simple example-->
     <string name="simple_example_item_move_to_top">Move to top</string>

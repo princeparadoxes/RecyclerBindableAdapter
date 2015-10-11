@@ -1,5 +1,6 @@
 package com.princeparadoxes.danil.recyclerbindableadapter.grid;
 
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -26,12 +27,13 @@ public class GridViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void bindView(Integer item, int position, ActionListener listener) {
+    public void bindViewFirstType(GridExampleItem item, int position, ActionListener listener) {
         actionListener = listener;
         this.position = position;
-        tittle.setText(String.valueOf(item));
+        tittle.setText(String.valueOf(item.getValue()));
     }
 
+    @Nullable
     @OnClick(R.id.grid_example_item_move_to_top)
     protected void OnMoveToTopClick() {
         if (actionListener != null) {
@@ -39,6 +41,7 @@ public class GridViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
+    @Nullable
     @OnClick(R.id.grid_example_item_remove)
     protected void OnRemoveClick() {
         if (actionListener != null) {
@@ -46,6 +49,7 @@ public class GridViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
+    @Nullable
     @OnClick(R.id.grid_example_item_up)
     protected void OnUpClick() {
         if (actionListener != null) {
@@ -53,10 +57,33 @@ public class GridViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
+    @Nullable
     @OnClick(R.id.grid_example_item_down)
     protected void OnDownClick() {
         if (actionListener != null) {
             actionListener.OnDown(position);
+        }
+    }
+
+    public void bindViewSecondType(GridExampleItem item, int position, ActionListener listener) {
+        actionListener = listener;
+        this.position = position;
+        tittle.setText(String.valueOf(item.getValue()));
+    }
+
+    @Nullable
+    @OnClick(R.id.grid_example_item_add_to)
+    protected void OnAddToClick() {
+        if (actionListener != null) {
+            actionListener.OnAddTo(position);
+        }
+    }
+
+    @Nullable
+    @OnClick(R.id.grid_example_item_set)
+    protected void OnSetClick() {
+        if (actionListener != null) {
+            actionListener.OnSet(position);
         }
     }
 
@@ -68,5 +95,9 @@ public class GridViewHolder extends RecyclerView.ViewHolder {
         void OnUp(int position);
 
         void OnDown(int position);
+
+        void OnAddTo(int position);
+
+        void OnSet(int position);
     }
 }

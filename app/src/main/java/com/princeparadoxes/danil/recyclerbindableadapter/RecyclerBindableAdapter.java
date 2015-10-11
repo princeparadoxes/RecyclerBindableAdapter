@@ -24,7 +24,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
 
     private RecyclerView.LayoutManager manager;
     private LayoutInflater inflater;
-    private GridLayoutManager.SpanSizeLookup mSpanSizeLookup = new GridLayoutManager.SpanSizeLookup() {
+    private GridLayoutManager.SpanSizeLookup spanSizeLookup = new GridLayoutManager.SpanSizeLookup() {
         @Override
         public int getSpanSize(int position) {
             return getGridSpan(position);
@@ -39,10 +39,12 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         return items.get(position);
     }
 
-    //@TODO test
     public void add(int position, T item) {
         items.add(position, item);
         notifyItemInserted(position);
+        int positionStart = position + getHeadersCount();
+        int itemCount = items.size() - position;
+        notifyItemRangeChanged(positionStart, itemCount);
     }
 
     public void add(T item) {
@@ -56,10 +58,11 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         notifyItemRangeInserted(size + getHeadersCount(), items.size());
     }
 
-    //@TODO test
     public void set(int position, T item) {
         items.set(position, item);
-        notifyItemInserted(position + getHeadersCount());
+        int positionStart = position + getHeadersCount();
+        int itemCount = items.size() - position;
+        notifyItemRangeChanged(positionStart, itemCount);
     }
 
     public void removeChild(int position) {
@@ -146,9 +149,6 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
     }
 
     protected VH onCreteItemViewHolder(ViewGroup parent, int type) {
-        if (inflater == null) {
-            this.inflater = LayoutInflater.from(parent.getContext());
-        }
         return viewHolder(inflater.inflate(layoutId(type), parent, false), type);
     }
 
@@ -178,30 +178,37 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         if (manager == null) {
             setManager(recyclerView.getLayoutManager());
         }
+        if (inflater == null) {
+            this.inflater = LayoutInflater.from(recyclerView.getContext());
+        }
     }
 
     private void setManager(RecyclerView.LayoutManager manager) {
         this.manager = manager;
         if (this.manager instanceof GridLayoutManager) {
-            ((GridLayoutManager) this.manager).setSpanSizeLookup(mSpanSizeLookup);
+            ((GridLayoutManager) this.manager).setSpanSizeLookup(spanSizeLookup);
         } else if (this.manager instanceof StaggeredGridLayoutManager) {
             ((StaggeredGridLayoutManager) this.manager).setGapStrategy(
                     StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
         }
     }
 
-    public int getGridSpan(int position) {
+    protected int getGridSpan(int position) {
         if (isHeader(position) || isFooter(position)) {
-            if (manager instanceof GridLayoutManager) {
-                return ((GridLayoutManager) manager).getSpanCount();
-            } else if (manager instanceof StaggeredGridLayoutManager) {
-                return ((StaggeredGridLayoutManager) manager).getSpanCount();
-            }
-            return 1;
+            return getMaxGridSpan();
         }
         position -= headers.size();
         if (getItem(position) instanceof SpanItemInterface) {
             return ((SpanItemInterface) getItem(position)).getGridSpan();
+        }
+        return 1;
+    }
+
+    protected int getMaxGridSpan (){
+        if (manager instanceof GridLayoutManager) {
+            return ((GridLayoutManager) manager).getSpanCount();
+        } else if (manager instanceof StaggeredGridLayoutManager) {
+            return ((StaggeredGridLayoutManager) manager).getSpanCount();
         }
         return 1;
     }

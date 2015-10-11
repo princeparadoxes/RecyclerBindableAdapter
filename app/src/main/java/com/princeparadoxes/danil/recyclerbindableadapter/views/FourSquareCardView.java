@@ -7,16 +7,16 @@ import android.util.AttributeSet;
 /**
  * Created by Danil on 07.10.2015.
  */
-public class SquareCardView extends CardView {
-    public SquareCardView(Context context) {
+public class FourSquareCardView extends CardView {
+    public FourSquareCardView(Context context) {
         super(context);
     }
 
-    public SquareCardView(Context context, AttributeSet attrs) {
+    public FourSquareCardView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public SquareCardView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public FourSquareCardView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
