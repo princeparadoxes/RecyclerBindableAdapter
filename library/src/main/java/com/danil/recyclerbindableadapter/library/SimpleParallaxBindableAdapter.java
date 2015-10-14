@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Created by Danil on 08.10.2015.
  */
-public class SimpleParallaxBindableAdapter<T, VH extends BindableViewHolder>
+public final class SimpleParallaxBindableAdapter<T, VH extends BindableViewHolder>
         extends ParallaxBindableAdapter<T, VH> {
 
     @LayoutRes

@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Created by Danil on 08.10.2015.
  */
-public class SimpleBindableAdapter<T, VH extends BindableViewHolder>
+public final class SimpleBindableAdapter<T, VH extends BindableViewHolder>
         extends RecyclerBindableAdapter<T, VH> {
 
     @LayoutRes

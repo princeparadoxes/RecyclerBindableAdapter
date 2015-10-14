@@ -9,7 +9,7 @@ import android.widget.FrameLayout;
 /**
  * Created by Danil on 08.10.2015.
  */
-public class ParallaxContainer extends FrameLayout {
+class ParallaxContainer extends FrameLayout {
 
     private final boolean isParallax;
     private final boolean isFooter;
