@@ -14,14 +14,7 @@ import butterknife.OnClick;
  * Created by Danil on 07.10.2015.
  */
 public class LinearViewHolder extends RecyclerView.ViewHolder {
-    @Bind(R.id.linear_example_item_move_to_top)
-    View moveToTop;
-    @Bind(R.id.linear_example_item_remove)
-    View remove;
-    @Bind(R.id.linear_example_item_up)
-    View up;
-    @Bind(R.id.linear_example_item_down)
-    View down;
+
     @Bind(R.id.linear_example_item_text)
     TextView text;
 

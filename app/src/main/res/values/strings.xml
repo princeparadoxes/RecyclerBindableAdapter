@@ -5,6 +5,7 @@
     <string name="grid_example_label">Grid two types example</string>
     <string name="simple_example_label">Grid SimpleAdapter example</string>
     <string name="parallax_example_label">Parallax example</string>
+    <string name="filter_example_label">Filter example</string>
 
     <!-- Linear example-->
     <string name="linear_example_header_1">Header 1</string>
@@ -31,5 +32,19 @@
     <string name="simple_example_item_remove">Remove</string>
     <string name="simple_example_item_up">Up</string>
     <string name="simple_example_item_down">Down</string>
+    <string name="filter_example_edit_text_hint">Type filter</string>
+    <string name="filter_example_no_result">No results</string>
+
+    <!-- Filter example-->
+    <string-array name="names">
+        <item>John</item>
+        <item>Bob</item>
+        <item>Alex</item>
+        <item>Harry</item>
+        <item>Jack</item>
+        <item>Clark</item>
+        <item>Emil</item>
+        <item>Roger</item>
+    </string-array>
 
 </resources>

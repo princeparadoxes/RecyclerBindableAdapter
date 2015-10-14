@@ -24,6 +24,8 @@
                   android:label="@string/simple_example_label" />
         <activity android:name=".parallax.ParallaxExampleActivity"
                   android:label="@string/parallax_example_label"/>
+        <activity android:name=".filter.FilterExampleActivity"
+                  android:label="@string/filter_example_label"/>
     </application>
 
 </manifest>

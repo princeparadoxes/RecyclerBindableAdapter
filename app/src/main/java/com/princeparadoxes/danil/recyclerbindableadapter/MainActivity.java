@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.princeparadoxes.danil.recyclerbindableadapter.filter.FilterExampleActivity;
 import com.princeparadoxes.danil.recyclerbindableadapter.grid.GridExampleActivity;
 import com.princeparadoxes.danil.recyclerbindableadapter.linear.LinearExampleActivity;
 import com.princeparadoxes.danil.recyclerbindableadapter.parallax.ParallaxExampleActivity;
@@ -32,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.main_activity_parallax_example_button)
     protected void onParallaxButtonClick() {
         this.startActivity(new Intent(this, ParallaxExampleActivity.class));
+    }
+
+    @OnClick(R.id.main_activity_filter_example_button)
+    protected void onFilterButtonClick() {
+        this.startActivity(new Intent(this, FilterExampleActivity.class));
     }
 
     @Override
