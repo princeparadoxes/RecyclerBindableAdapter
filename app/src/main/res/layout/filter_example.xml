@@ -7,15 +7,15 @@
     <EditText
         android:id="@+id/filter_example_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="@dimen/filter_example_item_height"
         android:hint="@string/filter_example_edit_text_hint"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/filter_example_recycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="64dp"
-        android:padding="@dimen/linear_example_recycler_padding"/>
+        android:layout_marginTop="@dimen/filter_example_item_height"
+        android:padding="@dimen/filter_example_recycler_padding"/>
 
     <TextView
         android:id="@+id/filter_example_no_result"

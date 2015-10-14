@@ -30,4 +30,8 @@
     <dimen name="parallax_example_item_margin">4dp</dimen>
     <dimen name="parallax_example_item_height">64dp</dimen>
 
+    <!-- Filter example-->
+    <dimen name="filter_example_recycler_padding">4dp</dimen>
+    <dimen name="filter_example_item_margin">4dp</dimen>
+    <dimen name="filter_example_item_height">64dp</dimen>
 </resources>

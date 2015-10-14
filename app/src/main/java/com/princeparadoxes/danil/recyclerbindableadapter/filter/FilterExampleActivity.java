@@ -19,7 +19,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class FilterExampleActivity extends AppCompatActivity implements TextWatcher{
+public class FilterExampleActivity extends AppCompatActivity implements TextWatcher,
+        Filter.FilterListener {
 
     @Bind(R.id.filter_example_recycle)
     protected RecyclerView filterExampleRecycler;
@@ -61,19 +62,15 @@ public class FilterExampleActivity extends AppCompatActivity implements TextWatc
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        filterExampleAdapter.getFilter().filter(s, new Filter.FilterListener() {
-            @Override
-            public void onFilterComplete(int count) {
-                if (count > 0) {
-                    noResultView.setVisibility(View.GONE);
-                } else {
-                    noResultView.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+        filterExampleAdapter.getFilter().filter(s, FilterExampleActivity.this);
     }
 
     @Override
     public void afterTextChanged(Editable s) {
+    }
+
+    @Override
+    public void onFilterComplete(int count) {
+        noResultView.setVisibility(count > 0 ? View.GONE : View.VISIBLE);
     }
 }

@@ -32,10 +32,10 @@
     <string name="simple_example_item_remove">Remove</string>
     <string name="simple_example_item_up">Up</string>
     <string name="simple_example_item_down">Down</string>
-    <string name="filter_example_edit_text_hint">Type filter</string>
-    <string name="filter_example_no_result">No results</string>
 
     <!-- Filter example-->
+    <string name="filter_example_edit_text_hint">Type filter</string>
+    <string name="filter_example_no_result">No results</string>
     <string-array name="names">
         <item>John</item>
         <item>Bob</item>
