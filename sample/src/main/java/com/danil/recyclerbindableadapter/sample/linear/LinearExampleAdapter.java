@@ -11,10 +11,6 @@ import com.danil.recyclerbindableadapter.sample.R;
 public class LinearExampleAdapter extends RecyclerBindableAdapter<Integer, LinearViewHolder> {
     private LinearViewHolder.ActionListener actionListener;
 
-    public LinearExampleAdapter() {
-        super();
-    }
-
     @Override
     protected int layoutId(int type) {
         return R.layout.linear_example_item;
@@ -26,11 +22,6 @@ public class LinearExampleAdapter extends RecyclerBindableAdapter<Integer, Linea
     }
 
     @Override
-    protected int getItemType(int position) {
-        return 0;
-    }
-
-    @Override
     protected void onBindItemViewHolder(LinearViewHolder viewHolder, final int position, int type) {
         viewHolder.bindView(getItem(position), position, actionListener);
     }
@@ -38,5 +29,4 @@ public class LinearExampleAdapter extends RecyclerBindableAdapter<Integer, Linea
     public void setActionListener(LinearViewHolder.ActionListener actionListener) {
         this.actionListener = actionListener;
     }
-
 }

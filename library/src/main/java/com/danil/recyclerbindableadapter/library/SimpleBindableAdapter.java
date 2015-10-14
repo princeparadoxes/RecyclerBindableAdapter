@@ -24,11 +24,6 @@ public final class SimpleBindableAdapter<T, VH extends BindableViewHolder>
     }
 
     @Override
-    protected int getItemType(int position) {
-        return 0;
-    }
-
-    @Override
     protected void onBindItemViewHolder(BindableViewHolder viewHolder, int position, int type) {
         viewHolder.bindView(position, getItem(position), actionListener);
     }

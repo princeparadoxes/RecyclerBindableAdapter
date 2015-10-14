@@ -14,10 +14,6 @@ public class GridExampleAdapter extends RecyclerBindableAdapter<GridExampleItem,
 
     private GridViewHolder.ActionListener actionListener;
 
-    public GridExampleAdapter() {
-        super();
-    }
-
     @Override
     protected int layoutId(int type) {
         if (type == FIRST_TYPE) {

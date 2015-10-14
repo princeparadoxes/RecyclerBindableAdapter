@@ -270,7 +270,9 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         return footers.get(location);
     }
 
-    abstract protected int getItemType(int position);
+    protected int getItemType(int position) {
+        return 0;
+    }
 
     abstract protected void onBindItemViewHolder(VH viewHolder, int position, int type);
 

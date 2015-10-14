@@ -10,10 +10,6 @@ import com.danil.recyclerbindableadapter.sample.R;
  */
 public class FilterExampleAdapter extends FilterBindableAdapter<String, FilterViewHolder> {
 
-    public FilterExampleAdapter() {
-        super();
-    }
-
     @Override
     protected String itemToString(String item) {
         return item;
@@ -22,11 +18,6 @@ public class FilterExampleAdapter extends FilterBindableAdapter<String, FilterVi
     @Override
     protected int layoutId(int type) {
         return R.layout.filter_example_item;
-    }
-
-    @Override
-    protected int getItemType(int position) {
-        return 0;
     }
 
     @Override

@@ -43,7 +43,7 @@ public abstract class ParallaxBindableAdapter<T, VH extends RecyclerView.ViewHol
         }
     }
 
-    public void translateView(float of, ParallaxContainer view, boolean isFooter) {
+    private void translateView(float of, ParallaxContainer view, boolean isFooter) {
         float ofCalculated = of * SCROLL_MULTIPLIER;
         ofCalculated = isFooter ? -ofCalculated : ofCalculated;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
