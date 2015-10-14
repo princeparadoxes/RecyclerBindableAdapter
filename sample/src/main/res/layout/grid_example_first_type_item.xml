@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.danil.recyclerbindableadapter.sample.views.FourSquareCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/grid_example_item_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/grid_example_linear_padding"
+            android:paddingRight="@dimen/grid_example_linear_padding">
+
+            <Button
+                android:id="@+id/grid_example_item_move_to_top"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/grid_example_item_move_to_top"/>
+
+            <Button
+                android:id="@+id/grid_example_item_remove"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/grid_example_item_remove"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/grid_example_linear_padding"
+            android:paddingRight="@dimen/grid_example_linear_padding">
+
+            <Button
+                android:id="@+id/grid_example_item_up"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/grid_example_item_up"/>
+
+            <Button
+                android:id="@+id/grid_example_item_down"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/grid_example_item_down"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/grid_example_item_tittle"
+        android:layout_width="@dimen/grid_example_item_tittle_width_height"
+        android:layout_height="@dimen/grid_example_item_tittle_width_height"
+        android:layout_gravity="center"
+        android:background="@drawable/grid_example_tittle_bg"
+        android:gravity="center"/>
+
+</com.danil.recyclerbindableadapter.sample.views.FourSquareCardView>

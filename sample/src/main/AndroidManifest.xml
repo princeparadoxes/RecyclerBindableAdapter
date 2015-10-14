@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.danil.recyclerbindableadapter.sample" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".linear.LinearExampleActivity"
+                  android:label="@string/linear_example_label"/>
+        <activity android:name=".grid.GridExampleActivity"
+                  android:label="@string/grid_example_label" />
+        <activity android:name=".simple.SimpleExampleActivity"
+                  android:label="@string/simple_example_label" />
+        <activity android:name=".parallax.ParallaxExampleActivity"
+                  android:label="@string/parallax_example_label"/>
+        <activity android:name=".filter.FilterExampleActivity"
+                  android:label="@string/filter_example_label"/>
+    </application>
+
+</manifest>
