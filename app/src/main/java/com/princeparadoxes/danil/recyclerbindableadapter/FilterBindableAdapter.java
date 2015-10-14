@@ -35,12 +35,14 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
         notifyItemRangeInserted(getHeadersCount(), data.size());
     }
 
+    //@TODO need test
     public void addShowed(List<? extends T> data) {
         objects.clear();
         objects.addAll(data);
         notifyDataSetChanged();
     }
 
+    //@TODO need test
     @Override
     public void removeChild(int position) {
         objects.remove(position);
@@ -52,14 +54,7 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
         notifyItemRangeChanged(positionStart, itemCount);
     }
 
-//    public int getPosition(T o) {
-//        return objects.indexOf(o);
-//    }
-
-//    public void clear() {
-//        objects.clear();
-//    }
-
+    //@TODO need test
     public void setOnFilterObjectCallback(OnFilterObjectCallback objectCallback) {
         onFilterObjectCallback = objectCallback;
     }
@@ -156,12 +151,7 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
             if (onFilterObjectCallback != null) {
                 onFilterObjectCallback.handle(results.count);
             }
-//            if (results.count > 0) {
-                notifyDataSetChanged();
-//                notifyItemRangeChanged(getHeadersCount(), results.count);
-//            } else {
-//                notify;
-//            }
+            notifyDataSetChanged();
         }
     }
 }

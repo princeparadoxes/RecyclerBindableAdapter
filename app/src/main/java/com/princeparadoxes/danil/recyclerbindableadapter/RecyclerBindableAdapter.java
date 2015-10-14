@@ -90,6 +90,11 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         }
     }
 
+    //@TODO need test
+    public int indexOf(T object) {
+        return items.indexOf(object);
+    }
+
     @Override
     public VH onCreateViewHolder(ViewGroup viewGroup, int type) {
         //if our position is one of our items (this comes from getItemViewType(int position) below)
@@ -222,7 +227,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         }
     }
 
-    //remove a header from the adapter @TODO test
+    //@TODO need test
     public void removeHeader(View header) {
         if (headers.contains(header)) {
             //animate
@@ -240,7 +245,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         }
     }
 
-    //remove a footer from the adapter @TODO test
+    //@TODO need test
     public void removeFooter(View footer) {
         if (footers.contains(footer)) {
             //animate
