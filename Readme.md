@@ -12,12 +12,11 @@ The library contains five adapters:
 adapter with a minimal amount of code.
 
 ## Installation
+Copy `library` module in your project.
 
-Add the following dependency to your gradle build file:
+Add `include ':library'` in `settings.gradle` file.
 
-    dependencies {
-        compile 'com.getkeepsafe.android.multistateanimation: library: 1.1.0'
-    }
+Add `compile project (':library')` in dependences `build.gradle` your app.
 
 ## Usage
 ### RecyclerBindableAdapter.
@@ -43,32 +42,32 @@ To use RecyclerBindableAdapter need to extend them his adapter and create ViewHo
 An example of the adapter:
 ```java
     // Expand our class from RecyclerBindableAdapter, as the parameters are        passed to a data type and ViewHolder
-    public class LinearExampleAdapter extends RecyclerBindableAdapter<Integer, LinearViewHolder> {
+    public class LinearExampleAdapter extends RecyclerBindableAdapter<Integer, LinearViewHolder> {
     // Initialize ActionListener
-    private LinearViewHolder.ActionListener actionListener;
+    private LinearViewHolder.ActionListener actionListener;
 
     // Specify layoutId item
-    @Override
-    protected int layoutId(int type) {
-        return R.layout.linear_example_item;
-    }
+    @Override
+    protected int layoutId(int type) {
+        return R.layout.linear_example_item;
+    }
 
     // Create a new instance of the view element
-    @Override
-    protected LinearViewHolder viewHolder(View view, int type) {
-        return new LinearViewHolder(view);
-    }
+    @Override
+    protected LinearViewHolder viewHolder(View view, int type) {
+        return new LinearViewHolder(view);
+    }
 
     // Pass data from the adapter element in ViewHolder
     @Override
-    protected void onBindItemViewHolder(LinearViewHolder viewHolder, final int position, int type) {
-        viewHolder.bindView(getItem(position), position, actionListener);
-    }
+    protected void onBindItemViewHolder(LinearViewHolder viewHolder, final int position, int type) {
+        viewHolder.bindView(getItem(position), position, actionListener);
+    }
 
     // Setter for ActionListener
-    public void setActionListener(LinearViewHolder.ActionListener actionListener) {
-        this.actionListener = actionListener;
-    }
+    public void setActionListener(LinearViewHolder.ActionListener actionListener) {
+        this.actionListener = actionListener;
+    }
 
 }
 ```
@@ -82,22 +81,22 @@ The basic methods are not in RecyclerBindableAdapter:
 An example of using a filter:
 ```java
 filterEditText.addTextChangedListener (new TextWatcher () {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                
-            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                
+            }
 
     // If you change the text inside filterEditText amended text is inserted as a filter
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filterExampleAdapter.getFilter().filter(s);
-            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterExampleAdapter.getFilter().filter(s);
+            }
 
-            Override
-            public void afterTextChanged(Editable s) {
+            Override
+            public void afterTextChanged(Editable s) {
 
-            }
-        });
+            }
+        });
 ```
 ### ParallaxBindableAdapter
 Extends RecyclerBindableAdapter, unlike him, can only have one Header and Footer.
@@ -113,7 +112,7 @@ You can create your ActionListener which necessarily extends BindableViewHolder.
 Example initialization:
 ```java
     // initialize SimpleBindableAdapter, indicates the type of items and ViewHolder inherited from BindableViewHolder
-    private SimpleBindableAdapter<Integer, SimpleViewHolder> simpleExampleAdapter;
+    private SimpleBindableAdapter<Integer, SimpleViewHolder> simpleExampleAdapter;
 
 ...
 
@@ -127,15 +126,15 @@ Example initialization:
     }
 
     @Override
-    protected void onResume() {
-        super.onResume ();
-        ArrayList<Integer> list = new ArrayList<>();
-        for (int i = 0; i <COUNT_ITEMS; i ++) {
-            list.add (i + 1);
-        }
-        simpleExampleAdapter.clear();
-        simpleExampleAdapter.addAll(list);
-    }
+    protected void onResume() {
+        super.onResume ();
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i <COUNT_ITEMS; i ++) {
+            list.add (i + 1);
+        }
+        simpleExampleAdapter.clear();
+        simpleExampleAdapter.addAll(list);
+    }
 ```
 ## Sample application
 
@@ -148,16 +147,16 @@ Example [SimpleParallaxBindableAdapter] (sample / src / main / javacom / danil /
 
 ## License
 
-    Copyright 2015 Danil Perevalov.
+    Copyright 2015 Danil Perevalov.
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+       http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
