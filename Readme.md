@@ -139,11 +139,11 @@ Example initialization:
 ## Sample application
 
 See [sample application] (sample/) for an example.
-* Example [RecyclerBindableAdapter] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/linear)
-* Example [FilterBindableAdapter] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/filter)
-* Example [RecyclerBindableAdapter with two item types] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/grid)
-* Example [SimpleBindableAdapter] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/simple)
-* Example [SimpleParallaxBindableAdapter] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/parallax)
+* Example [RecyclerBindableAdapter] (sample/src/main/java/com/danil/recyclerbindableadapter/sample/linear)
+* Example [FilterBindableAdapter] (sample/src/main/java/com/danil/recyclerbindableadapter/sample/filter)
+* Example [RecyclerBindableAdapter with two item types] (sample/src/main/java/com/danil/recyclerbindableadapter/sample/grid)
+* Example [SimpleBindableAdapter] (sample/src/main/java/com/danil/recyclerbindableadapter/sample/simple)
+* Example [SimpleParallaxBindableAdapter] (sample/src/main/java/com/danil/recyclerbindableadapter/sample/parallax)
 
 ## License
 
