@@ -1,6 +1,6 @@
 # RecyclerBindableAdapter
 
-Abstract adapter for convenient work with RecyclerView.
+Abstract adapter for convenient work with RecyclerView. It has several headers and footers.
 
 ## Overview
 
@@ -138,12 +138,12 @@ Example initialization:
 ```
 ## Sample application
 
-See [sample application] (sample /) for an example.
-Example [RecyclerBindableAdapter] (sample / src / main / javacom / danil / recyclerbindableadapter / sample / linear)
-Example [FilterBindableAdapter] (sample / src / main / javacom / danil / recyclerbindableadapter / sample / filter)
-Example [RecyclerBindableAdapter with two item types] (sample / src / main / javacom / danil / recyclerbindableadapter / sample / grid)
-Example [SimpleBindableAdapter] (sample / src / main / javacom / danil / recyclerbindableadapter / sample / simple)
-Example [SimpleParallaxBindableAdapter] (sample / src / main / javacom / danil / recyclerbindableadapter / sample / parallax)
+See [sample application] (sample/) for an example.
+* Example [RecyclerBindableAdapter] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/linear)
+* Example [FilterBindableAdapter] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/filter)
+* Example [RecyclerBindableAdapter with two item types] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/grid)
+* Example [SimpleBindableAdapter] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/simple)
+* Example [SimpleParallaxBindableAdapter] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/parallax)
 
 ## License
 
