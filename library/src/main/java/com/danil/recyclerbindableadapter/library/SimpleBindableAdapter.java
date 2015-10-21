@@ -18,7 +18,7 @@ public final class SimpleBindableAdapter<T, VH extends BindableViewHolder>
     Class<VH> vhClass;
     BindableViewHolder.ActionListener actionListener;
 
-    public SimpleBindableAdapter(int layoutId, Class<VH> vhClass) {
+    public SimpleBindableAdapter(@LayoutRes int layoutId, Class<VH> vhClass) {
         this.layoutId = layoutId;
         this.vhClass = vhClass;
     }
