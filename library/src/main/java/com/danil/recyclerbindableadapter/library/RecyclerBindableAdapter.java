@@ -60,9 +60,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
 
     public void set(int position, T item) {
         items.set(position, item);
-        int positionStart = position + getHeadersCount();
-        int itemCount = items.size() - position;
-        notifyItemRangeChanged(positionStart, itemCount);
+        notifyItemChanged(position + getHeadersCount());
     }
 
     public void removeChild(int position) {
