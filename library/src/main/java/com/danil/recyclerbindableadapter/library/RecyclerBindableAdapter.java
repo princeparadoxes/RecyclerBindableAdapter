@@ -99,7 +99,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
     public VH onCreateViewHolder(ViewGroup viewGroup, int type) {
         //if our position is one of our items (this comes from getItemViewType(int position) below)
         if (type != TYPE_HEADER && type != TYPE_FOOTER) {
-            return (VH) onCreteItemViewHolder(viewGroup, type);
+            return (VH) onCreateItemViewHolder(viewGroup, type);
             //else we have a header/footer
         } else {
             //create a new framelayout, or inflate from a resource
@@ -153,7 +153,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         return footers.size() > 0 && (position >= getHeadersCount() + getRealItemCount());
     }
 
-    protected VH onCreteItemViewHolder(ViewGroup parent, int type) {
+    protected VH onCreateItemViewHolder(ViewGroup parent, int type) {
         return viewHolder(inflater.inflate(layoutId(type), parent, false), type);
     }
 
