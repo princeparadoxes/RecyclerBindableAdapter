@@ -12,10 +12,12 @@ The library contains five adapters:
 adapter with a minimal amount of code.
 
 ## Installation
+Add `compile 'com.github.princeparadoxes:recyclerbindableadapter:0.8'` in your dependencies.
+
+Or
+
 Copy `library` module in your project.
-
 Add `include ':library'` in `settings.gradle` file.
-
 Add `compile project (':library')` in dependences `build.gradle` your app.
 
 ## Usage
@@ -139,11 +141,11 @@ Example initialization:
 ## Sample application
 
 See [sample application] (sample/) for an example.
-* Example [RecyclerBindableAdapter] (sample/src/main/java/com/danil/recyclerbindableadapter/sample/linear)
-* Example [FilterBindableAdapter] (sample/src/main/java/com/danil/recyclerbindableadapter/sample/filter)
-* Example [RecyclerBindableAdapter with two item types] (sample/src/main/java/com/danil/recyclerbindableadapter/sample/grid)
-* Example [SimpleBindableAdapter] (sample/src/main/java/com/danil/recyclerbindableadapter/sample/simple)
-* Example [SimpleParallaxBindableAdapter] (sample/src/main/java/com/danil/recyclerbindableadapter/sample/parallax)
+* Example [RecyclerBindableAdapter] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/linear)
+* Example [FilterBindableAdapter] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/filter)
+* Example [RecyclerBindableAdapter with two item types] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/grid)
+* Example [SimpleBindableAdapter] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/simple)
+* Example [SimpleParallaxBindableAdapter] (sample/src/main/javacom/danil/recyclerbindableadapter/sample/parallax)
 
 ## License
 
