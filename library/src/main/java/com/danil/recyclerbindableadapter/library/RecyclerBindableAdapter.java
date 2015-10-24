@@ -88,9 +88,12 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         }
     }
 
-    //@TODO need test
     public int indexOf(T object) {
         return items.indexOf(object);
+    }
+
+    public List<T> getItems() {
+        return items;
     }
 
     @Override
