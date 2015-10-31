@@ -115,7 +115,7 @@ You can create your ActionListener which necessarily extends BindableViewHolder.
 Example initialization:
 ```java
     // initialize SimpleBindableAdapter, indicates the type of items and ViewHolder inherited from BindableViewHolder
-    private SimpleBindableAdapter<Integer, SimpleViewHolder> simpleExampleAdapter;
+    private SimpleBindableAdapter<Integer> simpleExampleAdapter;
 
 ...
 

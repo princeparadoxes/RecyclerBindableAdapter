@@ -10,28 +10,30 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Created by Danil on 08.10.2015.
  */
-public final class SimpleBindableAdapter<T, VH extends BindableViewHolder>
-        extends RecyclerBindableAdapter<T, VH> {
+public final class SimpleBindableAdapter<T>
+        extends RecyclerBindableAdapter<T, BindableViewHolder> {
 
     @LayoutRes
     private final int layoutId;
-    Class<VH> vhClass;
+    Class<? extends BindableViewHolder> vhClass;
     BindableViewHolder.ActionListener actionListener;
 
-    public SimpleBindableAdapter(@LayoutRes int layoutId, Class<VH> vhClass) {
+    public SimpleBindableAdapter(@LayoutRes int layoutId,
+                                 Class<? extends BindableViewHolder> vhClass) {
         this.layoutId = layoutId;
         this.vhClass = vhClass;
     }
 
     @Override
     protected void onBindItemViewHolder(BindableViewHolder viewHolder, int position, int type) {
+        //noinspection unchecked
         viewHolder.bindView(position, getItem(position), actionListener);
     }
 
     @Override
-    protected VH viewHolder(View view, int type) {
+    protected BindableViewHolder viewHolder(View view, int type) {
         try {
-            return (VH) vhClass.getConstructor(View.class).newInstance(view);
+            return vhClass.getConstructor(View.class).newInstance(view);
         } catch (InstantiationException e) {
             e.printStackTrace();
             return null;

@@ -20,7 +20,7 @@ public class SimpleExampleActivity extends AppCompatActivity implements SimpleVi
     private static final int COUNT_ITEMS = 20;
     @Bind(R.id.simple_example_recycle)
     RecyclerView simpleExampleRecycler;
-    private SimpleBindableAdapter<Integer, SimpleViewHolder> simpleExampleAdapter;
+    private SimpleBindableAdapter<Integer> simpleExampleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

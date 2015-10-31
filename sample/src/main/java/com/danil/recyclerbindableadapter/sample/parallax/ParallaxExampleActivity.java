@@ -22,7 +22,7 @@ public class ParallaxExampleActivity extends AppCompatActivity {
     private static final int COUNT_ITEMS = 5;
     @Bind(R.id.parallax_example_recycle)
     RecyclerView parallaxExampleRecycler;
-    private SimpleParallaxBindableAdapter<String, ParallaxViewHolder> parallaxExampleAdapter;
+    private SimpleParallaxBindableAdapter<String> parallaxExampleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
