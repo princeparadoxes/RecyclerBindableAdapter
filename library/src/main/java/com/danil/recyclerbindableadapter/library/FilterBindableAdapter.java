@@ -29,11 +29,10 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
         notifyItemRangeInserted(getHeadersCount(), data.size());
     }
 
-    //@TODO need test
     public void addShowed(List<? extends T> data) {
         objects.clear();
         objects.addAll(data);
-        notifyDataSetChanged();
+        notifyItemRangeInserted(getHeadersCount(), data.size());
     }
 
     @Override
@@ -46,7 +45,6 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
         notifyItemRangeChanged(positionStart, itemCount);
     }
 
-    //@TODO need test
     public void setOnFilterObjectCallback(OnFilterObjectCallback objectCallback) {
         onFilterObjectCallback = objectCallback;
     }

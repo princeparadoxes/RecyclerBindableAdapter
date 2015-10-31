@@ -58,6 +58,12 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         notifyItemRangeInserted(size + getHeadersCount(), items.size());
     }
 
+    public void addAll(int position, List<? extends T> items) {
+        final int size = this.items.size();
+        this.items.addAll(position, items);
+        notifyItemRangeInserted(position + getHeadersCount() + size, items.size() - position);
+    }
+
     public void set(int position, T item) {
         items.set(position, item);
         notifyItemChanged(position + getHeadersCount());
@@ -228,7 +234,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         }
     }
 
-    //@TODO need test
+    //remove header from adapter
     public void removeHeader(View header) {
         if (headers.contains(header)) {
             //animate
@@ -246,7 +252,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         }
     }
 
-    //@TODO need test
+    //remove footer from adapter
     public void removeFooter(View footer) {
         if (footers.contains(footer)) {
             //animate
@@ -259,7 +265,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         return headers.size();
     }
 
-    protected View getHeader(int location) {
+    public View getHeader(int location) {
         return headers.get(location);
     }
 
@@ -267,7 +273,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         return footers.size();
     }
 
-    protected View getFooter(int location) {
+    public View getFooter(int location) {
         return footers.get(location);
     }
 
