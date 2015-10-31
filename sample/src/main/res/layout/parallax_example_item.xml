@@ -5,10 +5,10 @@
     android:layout_height="@dimen/parallax_example_item_height"
     android:layout_margin="@dimen/parallax_example_item_margin">
 
-        <TextView
-            android:id="@+id/parallax_example_item_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"/>
+    <TextView
+        android:id="@+id/parallax_example_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"/>
 
 </android.support.v7.widget.CardView>
