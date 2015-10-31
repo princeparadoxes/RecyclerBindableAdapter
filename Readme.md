@@ -1,3 +1,4 @@
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-RecyclerBindableAdapter-green.svg?style=flat)](https://android-arsenal.com/details/1/2689)
 # RecyclerBindableAdapter
 
 Abstract adapter for convenient work with RecyclerView. It has several headers and footers.
@@ -18,7 +19,7 @@ Or
 
 Copy `library` module in your project.
 Add `include ':library'` in `settings.gradle` file.
-Add `compile project (':library')` in dependences `build.gradle` your app.
+Add `compile project (':library')` in dependences `build.gradle` of your app.
 
 ## Usage
 ### RecyclerBindableAdapter.
