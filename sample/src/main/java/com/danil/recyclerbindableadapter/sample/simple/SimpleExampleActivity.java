@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class SimpleExampleActivity extends AppCompatActivity implements SimpleViewHolder.SimpleActionListener {
+public class SimpleExampleActivity extends AppCompatActivity
+        implements SimpleViewHolder.SimpleActionListener {
 
     private static final int COUNT_ITEMS = 20;
     @Bind(R.id.simple_example_recycle)
@@ -31,8 +32,8 @@ public class SimpleExampleActivity extends AppCompatActivity implements SimpleVi
         simpleExampleRecycler.setLayoutManager(layoutManager);
         simpleExampleRecycler.setItemAnimator(new DefaultItemAnimator());
 
-        simpleExampleAdapter = new SimpleBindableAdapter<>(
-                R.layout.simple_example_item, SimpleViewHolder.class);
+        simpleExampleAdapter =
+                new SimpleBindableAdapter<>(R.layout.simple_example_item, SimpleViewHolder.class);
         simpleExampleAdapter.setActionListener(this);
         simpleExampleRecycler.setAdapter(simpleExampleAdapter);
     }
@@ -69,6 +70,7 @@ public class SimpleExampleActivity extends AppCompatActivity implements SimpleVi
     }
 
     @Override
-    public void OnItemClickListener(int position, Object Item) {
+    public void OnItemClickListener(int position, Integer Item) {
+
     }
 }

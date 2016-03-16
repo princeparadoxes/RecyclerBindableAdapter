@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.danil.recyclerbindableadapter.library.SimpleParallaxBindableAdapter;
+import com.danil.recyclerbindableadapter.library.view.BindableViewHolder;
 import com.danil.recyclerbindableadapter.sample.R;
 
 import java.util.ArrayList;
@@ -34,8 +35,7 @@ public class ParallaxExampleActivity extends AppCompatActivity {
         parallaxExampleRecycler.setItemAnimator(new DefaultItemAnimator());
 
         parallaxExampleAdapter =
-                new SimpleParallaxBindableAdapter<>(R.layout.parallax_example_item,
-                        ParallaxViewHolder.class);
+                new SimpleParallaxBindableAdapter<>(R.layout.parallax_example_item, ParallaxViewHolder.class);
         parallaxExampleAdapter.addHeader(inflateHeaderFooter(false));
         parallaxExampleAdapter.addFooter(inflateHeaderFooter(true));
         parallaxExampleRecycler.setAdapter(parallaxExampleAdapter);

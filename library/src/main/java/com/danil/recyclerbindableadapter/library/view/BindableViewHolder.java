@@ -6,13 +6,14 @@ import android.view.View;
 /**
  * Created by Danil on 08.10.2015.
  */
-public abstract class BindableViewHolder<T> extends RecyclerView.ViewHolder {
+public class BindableViewHolder<T, I extends BindableViewHolder.ActionListener<T>>
+        extends RecyclerView.ViewHolder {
 
     public BindableViewHolder(View itemView) {
         super(itemView);
     }
 
-    public void bindView(final int position, final T item, final ActionListener actionListener) {
+    public void bindView(final int position, final T item, final I actionListener) {
         if (actionListener != null) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -23,7 +24,7 @@ public abstract class BindableViewHolder<T> extends RecyclerView.ViewHolder {
         }
     }
 
-    public interface ActionListener {
-        void OnItemClickListener(int position, Object Item);
+    public interface ActionListener<T> {
+        void OnItemClickListener(int position, T Item);
     }
 }

@@ -13,7 +13,7 @@ import butterknife.OnClick;
 /**
  * Created by Danil on 07.10.2015.
  */
-public class SimpleViewHolder extends BindableViewHolder<Integer> {
+public class SimpleViewHolder extends BindableViewHolder<Integer, SimpleViewHolder.SimpleActionListener> {
 
     @Bind(R.id.simple_example_item_tittle)
     TextView tittle;
@@ -27,10 +27,10 @@ public class SimpleViewHolder extends BindableViewHolder<Integer> {
     }
 
     @Override
-    public void bindView(int position, Integer item, ActionListener actionListener) {
+    public void bindView(int position, Integer item, SimpleActionListener actionListener) {
         super.bindView(position, item, actionListener);
         this.position = position;
-        simpleActionListener = (SimpleActionListener) actionListener;
+        simpleActionListener = actionListener;
         tittle.setText(String.valueOf(item));
     }
 
@@ -62,7 +62,7 @@ public class SimpleViewHolder extends BindableViewHolder<Integer> {
         }
     }
 
-    public interface SimpleActionListener extends ActionListener {
+    public interface SimpleActionListener extends BindableViewHolder.ActionListener<Integer> {
         void onMoveToTop(int position);
 
         void OnRemove(int position);
@@ -71,5 +71,4 @@ public class SimpleViewHolder extends BindableViewHolder<Integer> {
 
         void OnDown(int position);
     }
-
 }

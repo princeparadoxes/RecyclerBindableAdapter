@@ -15,17 +15,19 @@ public final class SimpleParallaxBindableAdapter<T>
 
     @LayoutRes
     private final int layoutId;
-    Class<? extends BindableViewHolder> vhClass;
-    BindableViewHolder.ActionListener actionListener;
+    Class<? extends BindableViewHolder<T, ? extends BindableViewHolder.ActionListener<T>>> vhClass;
+    BindableViewHolder.ActionListener<T> actionListener;
 
     public SimpleParallaxBindableAdapter(@LayoutRes int layoutId,
-                                         Class<? extends BindableViewHolder<T>> vhClass) {
+                                 Class<? extends BindableViewHolder<T, ? extends
+                                         BindableViewHolder.ActionListener<T>>> vhClass) {
         this.layoutId = layoutId;
         this.vhClass = vhClass;
     }
 
     @Override
-    protected void onBindItemViewHolder(BindableViewHolder viewHolder, int position, int type) {
+    protected void onBindItemViewHolder(BindableViewHolder viewHolder,
+                                        int position, int type) {
         //noinspection unchecked
         viewHolder.bindView(position, getItem(position), actionListener);
     }
@@ -54,7 +56,8 @@ public final class SimpleParallaxBindableAdapter<T>
         return layoutId;
     }
 
-    public void setActionListener(BindableViewHolder.ActionListener actionListener) {
+    public void setActionListener(BindableViewHolder.ActionListener<T> actionListener) {
         this.actionListener = actionListener;
     }
+
 }
