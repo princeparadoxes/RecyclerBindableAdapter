@@ -25,6 +25,6 @@ public class BindableViewHolder<T, I extends BindableViewHolder.ActionListener<T
     }
 
     public interface ActionListener<T> {
-        void OnItemClickListener(int position, T Item);
+        void OnItemClickListener(int position, T item);
     }
 }

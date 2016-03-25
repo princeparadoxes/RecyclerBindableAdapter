@@ -2,6 +2,7 @@ package com.danil.recyclerbindableadapter.library;
 
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -111,10 +112,27 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
             //create a new framelayout, or inflate from a resource
             FrameLayout frameLayout = new FrameLayout(viewGroup.getContext());
             //make sure it fills the space
-            frameLayout.setLayoutParams(new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            setHeaderFooterLayoutParams(frameLayout);
             return (VH) new HeaderFooterViewHolder(frameLayout);
         }
+    }
+
+    protected void setHeaderFooterLayoutParams(ViewGroup viewGroup) {
+        ViewGroup.LayoutParams layoutParams;
+        if (manager instanceof LinearLayoutManager) {
+            int orientation = ((LinearLayoutManager) manager).getOrientation();
+            if (orientation == LinearLayoutManager.VERTICAL) {
+                layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+            } else {
+                layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT);
+            }
+        } else {
+            layoutParams = new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+        viewGroup.setLayoutParams(layoutParams);
     }
 
     @Override

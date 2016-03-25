@@ -1,6 +1,7 @@
 package com.danil.recyclerbindableadapter.library;
 
 import android.os.Build;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,16 +72,14 @@ public abstract class ParallaxBindableAdapter<T, VH extends RecyclerView.ViewHol
             //create a new ParallaxContainer
             header = new ParallaxContainer(viewGroup.getContext(), isParallaxHeader, false);
             //make sure it fills the space
-            header.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT));
+            setHeaderFooterLayoutParams(header);
             return (VH) new HeaderFooterViewHolder(header);
             //else we have a footer
         } else {
             //create a new ParallaxContainer
             footer = new ParallaxContainer(viewGroup.getContext(), isParallaxFooter, true);
             //make sure it fills the space
-            footer.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT));
+            setHeaderFooterLayoutParams(footer);
             return (VH) new HeaderFooterViewHolder(footer);
         }
     }
