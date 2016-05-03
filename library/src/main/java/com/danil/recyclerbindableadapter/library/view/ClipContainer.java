@@ -9,21 +9,21 @@ import android.widget.FrameLayout;
 /**
  * Created by Danil on 08.10.2015.
  */
-public class ParallaxContainer extends FrameLayout {
+public class ClipContainer extends FrameLayout {
 
-    private final boolean isParallax;
+    private final boolean isClip;
     private final boolean isFooter;
     private int offset;
 
-    public ParallaxContainer(Context context, boolean shouldClick, boolean isFooter) {
+    public ClipContainer(Context context, boolean isClip, boolean isFooter) {
         super(context);
-        isParallax = shouldClick;
+        this.isClip = isClip;
         this.isFooter = isFooter;
     }
 
     @Override
     protected void dispatchDraw(@NonNull Canvas canvas) {
-        if (isParallax) {
+        if (isClip) {
             int top = isFooter ? -offset : 0;
             int bottom = isFooter ? getBottom() : getBottom() + offset;
             Rect rect = new Rect(getLeft(), top, getRight(), bottom);

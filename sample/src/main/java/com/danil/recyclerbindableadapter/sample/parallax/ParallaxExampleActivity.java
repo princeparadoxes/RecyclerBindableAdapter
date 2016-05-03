@@ -37,6 +37,7 @@ public class ParallaxExampleActivity extends AppCompatActivity {
         parallaxExampleAdapter =
                 new SimpleParallaxBindableAdapter<>(R.layout.parallax_example_item, ParallaxViewHolder.class);
         parallaxExampleAdapter.addHeader(inflateHeaderFooter(false));
+        parallaxExampleAdapter.addHeader(inflateHeaderFooter(false));
         parallaxExampleAdapter.addFooter(inflateHeaderFooter(true));
         parallaxExampleRecycler.setAdapter(parallaxExampleAdapter);
     }
