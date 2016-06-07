@@ -1,5 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+
+ext {
+    versionName = VERSION_NAME as String
+    versionCode = VERSION_CODE as int
+}
 buildscript {
     repositories {
         jcenter()
