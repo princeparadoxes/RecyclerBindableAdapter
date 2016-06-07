@@ -1,5 +1,6 @@
 package com.danil.recyclerbindableadapter.library;
 
+import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,10 +19,13 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
 
     public static final int TYPE_HEADER = 7898;
     public static final int TYPE_FOOTER = 7899;
+    private static final String P_ITEMS = "RecyclerBindableAdapter.items";
+    private static final String P_HEADERS = "RecyclerBindableAdapter.headers";
+    private static final String P_FOOTERS = "RecyclerBindableAdapter.footers";
 
-    private List<View> headers = new ArrayList<>();
-    private List<View> footers = new ArrayList<>();
-    private List<T> items = new ArrayList<>();
+    private ArrayList<View> headers = new ArrayList<>();
+    private ArrayList<View> footers = new ArrayList<>();
+    private ArrayList<T> items = new ArrayList<>();
 
     private RecyclerView.LayoutManager manager;
     private LayoutInflater inflater;
@@ -202,7 +206,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
     }
 
     @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+    public void onAttachedToRecyclerView(final RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
         if (manager == null) {
             setManager(recyclerView.getLayoutManager());
@@ -315,6 +319,29 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
 
         public HeaderFooterViewHolder(View itemView) {
             super(itemView);
+        }
+    }
+
+    public void onSaveInstanceState(Bundle outState) {
+        onSaveInstanceState(outState, "");
+    }
+
+    public void onSaveInstanceState(Bundle outState, String tag) {
+        outState.putSerializable(P_ITEMS + tag, items);
+//        outState.putSerializable(P_HEADERS + tag, headers);
+//        outState.putSerializable(P_FOOTERS + tag, footers);
+    }
+
+    public void onRestoreInstanceState(Bundle state) {
+        onRestoreInstanceState(state, "");
+    }
+
+    @SuppressWarnings("unchecked")
+    public void onRestoreInstanceState(Bundle state, String tag) {
+        if (state != null) {
+            items = (ArrayList<T>) state.getSerializable(P_ITEMS + tag);
+//            headers = (ArrayList<View>) state.getSerializable(P_HEADERS + tag);
+//            footers = (ArrayList<View>) state.getSerializable(P_FOOTERS + tag);
         }
     }
 }
