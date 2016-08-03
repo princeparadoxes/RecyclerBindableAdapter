@@ -9,13 +9,13 @@ import android.widget.FrameLayout;
 /**
  * Created by Danil on 08.10.2015.
  */
-public class ParallaxContainer extends FrameLayout {
+public class ClipContainer extends FrameLayout {
 
     private final boolean isParallax;
     private final boolean isFooter;
     private int offset;
 
-    public ParallaxContainer(Context context, boolean shouldClick, boolean isFooter) {
+    public ClipContainer(Context context, boolean shouldClick, boolean isFooter) {
         super(context);
         isParallax = shouldClick;
         this.isFooter = isFooter;

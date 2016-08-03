@@ -1,13 +1,12 @@
 package com.danil.recyclerbindableadapter.library;
 
 import android.os.Build;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
 
-import com.danil.recyclerbindableadapter.library.view.ParallaxContainer;
+import com.danil.recyclerbindableadapter.library.view.ClipContainer;
 
 /**
  * Created by Danil on 08.10.2015.
@@ -16,8 +15,8 @@ public abstract class ParallaxBindableAdapter<T, VH extends RecyclerView.ViewHol
         extends RecyclerBindableAdapter<T, VH> {
 
     private static final float SCROLL_MULTIPLIER = 0.5f;
-    private ParallaxContainer header;
-    private ParallaxContainer footer;
+    private ClipContainer header;
+    private ClipContainer footer;
     private OnParallaxScroll parallaxScroll;
     private boolean isParallaxHeader = true;
     private boolean isParallaxFooter = true;
@@ -44,7 +43,7 @@ public abstract class ParallaxBindableAdapter<T, VH extends RecyclerView.ViewHol
         }
     }
 
-    private void translateView(float of, ParallaxContainer view, boolean isFooter) {
+    private void translateView(float of, ClipContainer view, boolean isFooter) {
         float ofCalculated = of * SCROLL_MULTIPLIER;
         ofCalculated = isFooter ? -ofCalculated : ofCalculated;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -70,14 +69,14 @@ public abstract class ParallaxBindableAdapter<T, VH extends RecyclerView.ViewHol
             //else if we have a header
         } else if (type == TYPE_HEADER) {
             //create a new ParallaxContainer
-            header = new ParallaxContainer(viewGroup.getContext(), isParallaxHeader, false);
+            header = new ClipContainer(viewGroup.getContext(), isParallaxHeader, false);
             //make sure it fills the space
             setHeaderFooterLayoutParams(header);
             return (VH) new HeaderFooterViewHolder(header);
             //else we have a footer
         } else {
             //create a new ParallaxContainer
-            footer = new ParallaxContainer(viewGroup.getContext(), isParallaxFooter, true);
+            footer = new ClipContainer(viewGroup.getContext(), isParallaxFooter, true);
             //make sure it fills the space
             setHeaderFooterLayoutParams(footer);
             return (VH) new HeaderFooterViewHolder(footer);
