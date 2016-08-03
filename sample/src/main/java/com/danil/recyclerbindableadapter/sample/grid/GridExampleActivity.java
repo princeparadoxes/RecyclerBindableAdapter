@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 public class GridExampleActivity extends AppCompatActivity implements GridViewHolder.ActionListener {
 
     private static final int COUNT_ITEMS = 20;
+    public static final String KEY = "GridExampleActivity.adapter.items";
 
     @Bind(R.id.grid_example_recycler)
     RecyclerView gridExampleRecycler;
@@ -91,12 +92,12 @@ public class GridExampleActivity extends AppCompatActivity implements GridViewHo
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        gridExampleAdapter.onSaveInstanceState(outState);
+        outState.putParcelable(KEY, gridExampleAdapter.onSaveInstanceState());
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        gridExampleAdapter.onRestoreInstanceState(savedInstanceState);
+        gridExampleAdapter.onRestoreInstanceState(savedInstanceState.getParcelable(KEY));
     }
 }

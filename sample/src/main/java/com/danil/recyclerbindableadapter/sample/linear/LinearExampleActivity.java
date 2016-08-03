@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-
 import com.danil.recyclerbindableadapter.sample.R;
 
 import java.util.ArrayList;
@@ -21,6 +20,7 @@ import butterknife.ButterKnife;
 public class LinearExampleActivity extends AppCompatActivity implements LinearViewHolder.ActionListener {
 
     private static final int COUNT_ITEMS = 10;
+    public static final String KEY = "LinearExampleActivity.adapter.items";
     @Bind(R.id.linear_example_recycle)
     RecyclerView linearExampleRecycler;
     @BindString(R.string.linear_example_header_1)
@@ -107,12 +107,12 @@ public class LinearExampleActivity extends AppCompatActivity implements LinearVi
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        linearExampleAdapter.onSaveInstanceState(outState);
+        outState.putParcelable(KEY, linearExampleAdapter.onSaveInstanceState());
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        linearExampleAdapter.onRestoreInstanceState(savedInstanceState);
+        linearExampleAdapter.onRestoreInstanceState(savedInstanceState.getParcelable(KEY));
     }
 }

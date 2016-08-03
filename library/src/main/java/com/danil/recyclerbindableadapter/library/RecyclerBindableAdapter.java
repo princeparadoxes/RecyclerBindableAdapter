@@ -1,6 +1,7 @@
 package com.danil.recyclerbindableadapter.library;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -322,26 +324,22 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         }
     }
 
-    public void onSaveInstanceState(Bundle outState) {
-        onSaveInstanceState(outState, "");
-    }
-
-    public void onSaveInstanceState(Bundle outState, String tag) {
-        outState.putSerializable(P_ITEMS + tag, items);
-//        outState.putSerializable(P_HEADERS + tag, headers);
-//        outState.putSerializable(P_FOOTERS + tag, footers);
-    }
-
-    public void onRestoreInstanceState(Bundle state) {
-        onRestoreInstanceState(state, "");
+    public Parcelable onSaveInstanceState() {
+        Bundle bundle = new Bundle();
+        if (items.size() > 0 && (items.get(0) instanceof Parcelable
+                || items.get(0) instanceof Serializable)) {
+            bundle.putSerializable(P_ITEMS, items);
+        }
+        return bundle;
     }
 
     @SuppressWarnings("unchecked")
-    public void onRestoreInstanceState(Bundle state, String tag) {
-        if (state != null) {
-            items = (ArrayList<T>) state.getSerializable(P_ITEMS + tag);
-//            headers = (ArrayList<View>) state.getSerializable(P_HEADERS + tag);
-//            footers = (ArrayList<View>) state.getSerializable(P_FOOTERS + tag);
+    public void onRestoreInstanceState(Parcelable state) {
+        if (state != null && state instanceof Bundle) {
+            Bundle bundle = (Bundle) state;
+            if (bundle.containsKey(P_ITEMS)) {
+                items = (ArrayList<T>) bundle.getSerializable(P_ITEMS);
+            }
         }
     }
 }
