@@ -18,13 +18,13 @@ public class BindableViewHolder<T, I extends BindableViewHolder.ActionListener<T
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    actionListener.OnItemClickListener(position, item);
+                    actionListener.onItemClickListener(position, item);
                 }
             });
         }
     }
 
     public interface ActionListener<T> {
-        void OnItemClickListener(int position, T item);
+        void onItemClickListener(int position, T item);
     }
 }
