@@ -8,12 +8,8 @@ import com.danil.recyclerbindableadapter.sample.R;
 /**
  * Created by Danil on 02.10.2015.
  */
-public class FilterExampleAdapter extends FilterBindableAdapter<String, FilterViewHolder> {
+public class FilterExampleAdapter extends FilterBindableAdapter<Person, FilterViewHolder> {
 
-    @Override
-    protected String itemToString(String item) {
-        return item;
-    }
 
     @Override
     protected int layoutId(int type) {
@@ -29,4 +25,10 @@ public class FilterExampleAdapter extends FilterBindableAdapter<String, FilterVi
     protected FilterViewHolder viewHolder(View view, int type) {
         return new FilterViewHolder(view);
     }
+
+    @Override
+    protected String itemToString(Person item) {
+        return item.toString();
+    }
+
 }

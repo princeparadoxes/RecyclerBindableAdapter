@@ -34,4 +34,5 @@
     <dimen name="filter_example_recycler_padding">4dp</dimen>
     <dimen name="filter_example_item_margin">4dp</dimen>
     <dimen name="filter_example_item_height">64dp</dimen>
+    <dimen name="filter_example_item_margin_horizontal">100dp</dimen>
 </resources>

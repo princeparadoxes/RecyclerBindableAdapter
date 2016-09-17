@@ -15,8 +15,10 @@ import butterknife.ButterKnife;
  */
 public class FilterViewHolder extends RecyclerView.ViewHolder {
 
-    @Bind(R.id.filter_example_item_text)
-    TextView text;
+    @Bind(R.id.filter_example_first_name)
+    TextView firstNameField;
+    @Bind(R.id.filter_example_last_name)
+    TextView lastNameField;
 
 
     public FilterViewHolder(View itemView) {
@@ -24,7 +26,8 @@ public class FilterViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void bindView(String item) {
-        text.setText(item);
+    public void bindView(Person person) {
+        firstNameField.setText(person.getFirstName());
+        lastNameField.setText(person.getLastName());
     }
 }
