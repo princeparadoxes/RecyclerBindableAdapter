@@ -37,14 +37,14 @@
     <string name="filter_example_edit_text_hint">Type filter</string>
     <string name="filter_example_no_result">No results</string>
     <string-array name="names">
-        <item>John</item>
-        <item>Bob</item>
-        <item>Alex</item>
-        <item>Harry</item>
-        <item>Jack</item>
-        <item>Clark</item>
-        <item>Emil</item>
-        <item>Roger</item>
+        <item>John Doe</item>
+        <item>Bob Marley</item>
+        <item>Alex Grey</item>
+        <item>Harry Potter</item>
+        <item>Jack Norris</item>
+        <item>Clark Kent</item>
+        <item>Emil Nolde</item>
+        <item>Roger Dean</item>
     </string-array>
 
 </resources>
