@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-
 import com.danil.recyclerbindableadapter.sample.R;
 
 import java.util.ArrayList;
@@ -21,6 +20,7 @@ import butterknife.ButterKnife;
 public class LinearExampleActivity extends AppCompatActivity implements LinearViewHolder.ActionListener {
 
     private static final int COUNT_ITEMS = 10;
+    public static final String KEY = "LinearExampleActivity.adapter.items";
     @Bind(R.id.linear_example_recycle)
     RecyclerView linearExampleRecycler;
     @BindString(R.string.linear_example_header_1)
@@ -51,6 +51,13 @@ public class LinearExampleActivity extends AppCompatActivity implements LinearVi
         linearExampleAdapter.addFooter(inflateHeaderFooter(footerOne));
         linearExampleAdapter.addFooter(inflateHeaderFooter(footerTwo));
         linearExampleRecycler.setAdapter(linearExampleAdapter);
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < COUNT_ITEMS; i++) {
+            list.add(i + 1);
+        }
+        lastItemTittle = COUNT_ITEMS;
+        linearExampleAdapter.clear();
+        linearExampleAdapter.addAll(list);
     }
 
     private View inflateHeaderFooter(String tittle) {
@@ -78,18 +85,6 @@ public class LinearExampleActivity extends AppCompatActivity implements LinearVi
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        ArrayList<Integer> list = new ArrayList<>();
-        for (int i = 0; i < COUNT_ITEMS; i++) {
-            list.add(i + 1);
-        }
-        lastItemTittle = COUNT_ITEMS;
-        linearExampleAdapter.clear();
-        linearExampleAdapter.addAll(list);
-    }
-
-    @Override
     public void onMoveToTop(int position) {
         linearExampleAdapter.moveChildTo(position, 0);
     }
@@ -107,5 +102,17 @@ public class LinearExampleActivity extends AppCompatActivity implements LinearVi
     @Override
     public void OnDown(int position) {
         linearExampleAdapter.moveChildTo(position, position + 1);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY, linearExampleAdapter.onSaveInstanceState());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        linearExampleAdapter.onRestoreInstanceState(savedInstanceState.getParcelable(KEY));
     }
 }

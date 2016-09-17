@@ -13,7 +13,7 @@ The library contains five adapters:
 adapter with a minimal amount of code.
 
 ## Installation
-Add `compile 'com.github.princeparadoxes:recyclerbindableadapter:1.2.1'` in your dependencies.
+Add `compile 'com.github.princeparadoxes:recyclerbindableadapter:1.3'` in your dependencies.
 
 Or
 

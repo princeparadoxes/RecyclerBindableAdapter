@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 public class GridExampleActivity extends AppCompatActivity implements GridViewHolder.ActionListener {
 
     private static final int COUNT_ITEMS = 20;
+    public static final String KEY = "GridExampleActivity.adapter.items";
 
     @Bind(R.id.grid_example_recycler)
     RecyclerView gridExampleRecycler;
@@ -38,11 +39,6 @@ public class GridExampleActivity extends AppCompatActivity implements GridViewHo
         gridExampleAdapter = new GridExampleAdapter();
         gridExampleAdapter.setActionListener(this);
         gridExampleRecycler.setAdapter(gridExampleAdapter);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         ArrayList<GridExampleItem> list = new ArrayList<>();
         for (int i = 0; i < COUNT_ITEMS; i++) {
             if (i == 4 || i == 7) {
@@ -52,9 +48,9 @@ public class GridExampleActivity extends AppCompatActivity implements GridViewHo
             }
         }
         lastItemTittle = COUNT_ITEMS;
-        gridExampleAdapter.clear();
         gridExampleAdapter.addAll(list);
     }
+
 
     @Override
     public void onMoveToTop(int position) {
@@ -90,5 +86,18 @@ public class GridExampleActivity extends AppCompatActivity implements GridViewHo
             GridExampleItem item = new GridExampleItem(lastItemTittle, GridExampleAdapter.FIRST_TYPE);
             gridExampleAdapter.set(position - 1, item);
         }
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY, gridExampleAdapter.onSaveInstanceState());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        gridExampleAdapter.onRestoreInstanceState(savedInstanceState.getParcelable(KEY));
     }
 }

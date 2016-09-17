@@ -70,7 +70,7 @@ public class SimpleExampleActivity extends AppCompatActivity
     }
 
     @Override
-    public void OnItemClickListener(int position, Integer Item) {
+    public void onItemClickListener(int position, Integer Item) {
 
     }
 }
