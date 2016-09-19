@@ -113,7 +113,7 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
 
                         // Start at index 0, in case valueText starts with space(s)
                         for (String word : words) {
-                            if (word.startsWith(prefixString)) {
+                            if (word.contains(prefixString)) {
                                 newValues.add(value);
                                 break;
                             }
