@@ -11,10 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Filter;
 
-
 import com.danil.recyclerbindableadapter.sample.R;
 
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;

@@ -6,9 +6,6 @@ import android.widget.Filter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Danil on 13.10.2015.
- */
 public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolder>
         extends RecyclerBindableAdapter<T, VH> {
 

@@ -4,9 +4,6 @@ import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 
-/**
- * Created by Danil on 07.10.2015.
- */
 public class FourSquareCardView extends CardView {
     public FourSquareCardView(Context context) {
         super(context);
