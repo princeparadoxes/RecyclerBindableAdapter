@@ -52,7 +52,7 @@ public class FilterExampleActivity extends AppCompatActivity implements TextWatc
     @Override
     protected void onResume() {
         super.onResume();
-        List<String> list = Arrays.asList(getResources().getStringArray(R.array.names));
+        List<Person> list = Person.getPersons();
         filterExampleAdapter.clear();
         filterExampleAdapter.addAll(list);
     }
