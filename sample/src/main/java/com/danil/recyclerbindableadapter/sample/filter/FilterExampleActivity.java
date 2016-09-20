@@ -11,10 +11,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Filter;
 
-
+import com.danil.recyclerbindableadapter.library.filter.BindableAdapterFilter;
 import com.danil.recyclerbindableadapter.sample.R;
 
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
@@ -45,6 +44,14 @@ public class FilterExampleActivity extends AppCompatActivity implements TextWatc
 
         filterExampleAdapter = new FilterExampleAdapter();
         filterExampleRecycler.setAdapter(filterExampleAdapter);
+        filterExampleAdapter.setFilter(new BindableAdapterFilter<Person>() {
+            @Override
+            public boolean onFilterItem(CharSequence constraint, Person item) {
+                boolean first = item.getFirstName().toLowerCase().startsWith(constraint.toString());
+                boolean last = item.getLastName().toLowerCase().startsWith(constraint.toString());
+                return first || last;
+            }
+        });
 
         filterEditText.addTextChangedListener(this);
     }
