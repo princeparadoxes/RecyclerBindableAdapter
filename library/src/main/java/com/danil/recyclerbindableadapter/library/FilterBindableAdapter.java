@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Filter;
 
 import com.danil.recyclerbindableadapter.library.filter.BindableAdapterFilter;
+import com.danil.recyclerbindableadapter.library.filter.DefaultFilter;
 import com.danil.recyclerbindableadapter.library.filter.SupportBindableAdapterFilter;
 import com.danil.recyclerbindableadapter.library.filter.SupportDefaultFilter;
 
@@ -89,7 +90,7 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
     }
 
     private class ArrayFilter extends Filter {
-        private BindableAdapterFilter<T> filter;
+        private BindableAdapterFilter<T> filter = new DefaultFilter<>();
 
         private SupportBindableAdapterFilter supportFilter = new SupportDefaultFilter();
 
