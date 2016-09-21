@@ -36,5 +36,6 @@
     <!-- Filter example-->
     <string name="filter_example_edit_text_hint">Type filter</string>
     <string name="filter_example_no_result">No results</string>
+    <string name="filter_example_another_data">Another Persons</string>
 
 </resources>
