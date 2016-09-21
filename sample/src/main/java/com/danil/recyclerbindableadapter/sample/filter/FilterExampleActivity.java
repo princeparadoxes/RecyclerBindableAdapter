@@ -11,24 +11,24 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Filter;
 
+import com.danil.recyclerbindableadapter.library.filter.BindableAdapterFilter;
 import com.danil.recyclerbindableadapter.sample.R;
-
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FilterExampleActivity extends AppCompatActivity implements TextWatcher,
         Filter.FilterListener {
 
     @Bind(R.id.filter_example_recycle)
     protected RecyclerView filterExampleRecycler;
-
     @Bind(R.id.filter_example_edit_text)
     protected EditText filterEditText;
-
     @Bind(R.id.filter_example_no_result)
     protected View noResultView;
+
+    boolean anotherData = false;
 
     private FilterExampleAdapter filterExampleAdapter;
 
@@ -43,6 +43,14 @@ public class FilterExampleActivity extends AppCompatActivity implements TextWatc
 
         filterExampleAdapter = new FilterExampleAdapter();
         filterExampleRecycler.setAdapter(filterExampleAdapter);
+        filterExampleAdapter.setFilter(new BindableAdapterFilter<Person>() {
+            @Override
+            public boolean onFilterItem(CharSequence constraint, Person item) {
+                boolean first = item.getFirstName().toLowerCase().startsWith(constraint.toString());
+                boolean last = item.getLastName().toLowerCase().startsWith(constraint.toString());
+                return first || last;
+            }
+        });
 
         filterEditText.addTextChangedListener(this);
     }
@@ -50,26 +58,36 @@ public class FilterExampleActivity extends AppCompatActivity implements TextWatc
     @Override
     protected void onResume() {
         super.onResume();
-        List<Person> list = Person.getPersons();
-        filterExampleAdapter.clear();
-        filterExampleAdapter.addAll(list);
+        filterExampleAdapter.addAll(Person.getPersons());
+    }
+
+    @OnClick(R.id.filter_example_another_data)
+    void onAnotherClick() {
+        if (anotherData) {
+            filterExampleAdapter.addAll(Person.getPersons());
+            anotherData = false;
+        } else {
+            filterExampleAdapter.addAll(Person.getAnotherPersons());
+            anotherData = true;
+        }
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        filterExampleAdapter.filter(s, this);
+    }
+
+    @Override
+    public void onFilterComplete(int count) {
+        noResultView.setVisibility(count > 0 ? View.GONE : View.VISIBLE);
     }
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
     }
 
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        filterExampleAdapter.getFilter().filter(s, FilterExampleActivity.this);
-    }
 
     @Override
     public void afterTextChanged(Editable s) {
-    }
-
-    @Override
-    public void onFilterComplete(int count) {
-        noResultView.setVisibility(count > 0 ? View.GONE : View.VISIBLE);
     }
 }

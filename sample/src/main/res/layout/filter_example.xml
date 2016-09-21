@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/filter_example_edit_text"
@@ -10,11 +11,17 @@
         android:layout_height="@dimen/filter_example_item_height"
         android:hint="@string/filter_example_edit_text_hint"/>
 
+    <Button
+        android:id="@+id/filter_example_another_data"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/filter_example_item_height"
+        android:hint="@string/filter_example_another_data"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/filter_example_recycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/filter_example_item_height"
         android:padding="@dimen/filter_example_recycler_padding"/>
 
     <TextView
@@ -25,4 +32,4 @@
         android:text="@string/filter_example_no_result"
         android:visibility="gone"/>
 
-</FrameLayout>
+</LinearLayout>

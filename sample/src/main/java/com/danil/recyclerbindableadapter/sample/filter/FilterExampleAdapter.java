@@ -22,10 +22,4 @@ public class FilterExampleAdapter extends FilterBindableAdapter<Person, FilterVi
     protected FilterViewHolder viewHolder(View view, int type) {
         return new FilterViewHolder(view);
     }
-
-    @Override
-    protected String itemToString(Person item) {
-        return item.toString();
-    }
-
 }

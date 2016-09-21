@@ -40,4 +40,18 @@ public class Person {
     }
 
 
+    public static List<Person> getAnotherPersons() {
+        List<Person> persons = new ArrayList<>(8);
+        persons.add(new Person("Leonardo", "DiCaprio"));
+        persons.add(new Person("Tom", "Hanks"));
+        persons.add(new Person("Zack", "Snyder"));
+        persons.add(new Person("Steven", "Spilberg"));
+        persons.add(new Person("Stanly", "Kubrick"));
+        persons.add(new Person("Lena", "Headey"));
+        persons.add(new Person("Mark", "Strong"));
+        persons.add(new Person("Bruce", "Willis"));
+        return persons;
+    }
+
+
 }

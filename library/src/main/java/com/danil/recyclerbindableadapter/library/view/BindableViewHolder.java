@@ -1,5 +1,6 @@
 package com.danil.recyclerbindableadapter.library.view;
 
+import android.support.annotation.CallSuper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -10,6 +11,7 @@ public class BindableViewHolder<T, I extends BindableViewHolder.ActionListener<T
         super(itemView);
     }
 
+    @CallSuper
     public void bindView(final int position, final T item, final I actionListener) {
         if (actionListener != null) {
             itemView.setOnClickListener(new View.OnClickListener() {
