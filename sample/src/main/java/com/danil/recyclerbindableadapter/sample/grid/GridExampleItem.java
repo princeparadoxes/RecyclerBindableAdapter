@@ -3,9 +3,6 @@ package com.danil.recyclerbindableadapter.sample.grid;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by Danil on 11.10.2015.
- */
 public class GridExampleItem implements Parcelable {
     private Integer value;
     private int type;

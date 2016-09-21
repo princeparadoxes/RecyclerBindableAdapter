@@ -5,9 +5,6 @@ import android.view.View;
 import com.danil.recyclerbindableadapter.library.RecyclerBindableAdapter;
 import com.danil.recyclerbindableadapter.sample.R;
 
-/**
- * Created by Danil on 02.10.2015.
- */
 public class LinearExampleAdapter extends RecyclerBindableAdapter<Integer, LinearViewHolder> {
     private LinearViewHolder.ActionListener actionListener;
 

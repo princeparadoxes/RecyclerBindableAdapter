@@ -10,9 +10,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * Created by Danil on 07.10.2015.
- */
 public class SimpleViewHolder extends BindableViewHolder<Integer, SimpleViewHolder.SimpleActionListener> {
 
     @Bind(R.id.simple_example_item_tittle)

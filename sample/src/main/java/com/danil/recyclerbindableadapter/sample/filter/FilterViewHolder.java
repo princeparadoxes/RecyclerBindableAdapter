@@ -10,9 +10,6 @@ import com.danil.recyclerbindableadapter.sample.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by Danil on 07.10.2015.
- */
 public class FilterViewHolder extends RecyclerView.ViewHolder {
 
     @Bind(R.id.filter_example_first_name)

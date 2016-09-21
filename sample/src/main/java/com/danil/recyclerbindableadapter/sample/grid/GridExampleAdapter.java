@@ -5,9 +5,6 @@ import android.view.View;
 import com.danil.recyclerbindableadapter.library.RecyclerBindableAdapter;
 import com.danil.recyclerbindableadapter.sample.R;
 
-/**
- * Created by Danil on 02.10.2015.
- */
 public class GridExampleAdapter extends RecyclerBindableAdapter<GridExampleItem, GridViewHolder> {
     public final static int FIRST_TYPE = 0;
     public final static int SECOND_TYPE = 1;

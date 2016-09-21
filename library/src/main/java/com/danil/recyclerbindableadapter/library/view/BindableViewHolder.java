@@ -3,9 +3,6 @@ package com.danil.recyclerbindableadapter.library.view;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-/**
- * Created by Danil on 08.10.2015.
- */
 public class BindableViewHolder<T, I extends BindableViewHolder.ActionListener<T>>
         extends RecyclerView.ViewHolder {
 

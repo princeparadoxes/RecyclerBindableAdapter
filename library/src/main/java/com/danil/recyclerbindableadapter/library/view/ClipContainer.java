@@ -9,9 +9,6 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.FrameLayout;
 
-/**
- * Created by Danil on 08.10.2015.
- */
 public class ClipContainer extends FrameLayout {
 
     private boolean isParallax;

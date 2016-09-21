@@ -5,9 +5,6 @@ import android.view.View;
 import com.danil.recyclerbindableadapter.library.FilterBindableAdapter;
 import com.danil.recyclerbindableadapter.sample.R;
 
-/**
- * Created by Danil on 02.10.2015.
- */
 public class FilterExampleAdapter extends FilterBindableAdapter<Person, FilterViewHolder> {
 
 

@@ -23,7 +23,7 @@ public class Person {
     /*For search in firstName and lastName*/
     @Override
     public String toString() {
-        return firstName + lastName;
+        return firstName + " " + lastName;
     }
 
     public static List<Person> getPersons() {
