@@ -8,9 +8,6 @@ import android.view.animation.TranslateAnimation;
 
 import com.danil.recyclerbindableadapter.library.view.ClipContainer;
 
-/**
- * Created by Danil on 08.10.2015.
- */
 public abstract class ParallaxBindableAdapter<T, VH extends RecyclerView.ViewHolder>
         extends RecyclerBindableAdapter<T, VH> {
 

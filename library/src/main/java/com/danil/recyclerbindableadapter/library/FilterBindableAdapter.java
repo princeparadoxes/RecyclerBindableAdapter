@@ -11,9 +11,6 @@ import com.danil.recyclerbindableadapter.library.filter.SupportDefaultFilter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Danil on 13.10.2015.
- */
 public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolder>
         extends RecyclerBindableAdapter<T, VH> {
 
@@ -89,6 +86,24 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
         void handle(int countFilterObject);
     }
 
+    protected boolean onFilter(String itemString, String filterString) {
+        // First match against the whole, non-splitted value
+        if (itemString.startsWith(filterString)) {
+            return true;
+        } else {
+            final String[] words = itemString.split(" ");
+            final int wordCount = words.length;
+
+            // Start at index 0, in case itemString starts with space(s)
+            for (String word : words) {
+                if (word.startsWith(filterString)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     private class ArrayFilter extends Filter {
         private BindableAdapterFilter<T> filter = new DefaultFilter<>();
 
@@ -148,5 +163,6 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
             }
             notifyDataSetChanged();
         }
+
     }
 }

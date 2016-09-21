@@ -7,9 +7,6 @@ import com.danil.recyclerbindableadapter.library.view.BindableViewHolder;
 
 import java.lang.reflect.InvocationTargetException;
 
-/**
- * Created by Danil on 08.10.2015.
- */
 public final class SimpleParallaxBindableAdapter<T>
         extends ParallaxBindableAdapter<T, BindableViewHolder> {
 
