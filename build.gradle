@@ -22,3 +22,8 @@ allprojects {
         jcenter()
     }
 }
+
+ext{
+    versionName = VERSION_NAME as String
+    versionCode = VERSION_CODE as int
+}

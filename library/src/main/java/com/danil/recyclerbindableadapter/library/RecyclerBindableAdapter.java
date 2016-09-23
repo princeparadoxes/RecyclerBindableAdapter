@@ -141,7 +141,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
     }
 
     @Override
-    final public void onBindViewHolder(final RecyclerView.ViewHolder vh, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder vh, int position) {
         //check what type of view our position is
         if (isHeader(position)) {
             View v = headers.get(position);
@@ -157,7 +157,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         }
     }
 
-    private void prepareHeaderFooter(HeaderFooterViewHolder vh, View view) {
+    protected void prepareHeaderFooter(HeaderFooterViewHolder vh, View view) {
         //if it's a staggered grid, span the whole layout
         if (manager instanceof StaggeredGridLayoutManager) {
             StaggeredGridLayoutManager.LayoutParams layoutParams = new StaggeredGridLayoutManager.LayoutParams(
@@ -174,11 +174,11 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         ((ViewGroup) vh.itemView).addView(view);
     }
 
-    private boolean isHeader(int position) {
+    protected boolean isHeader(int position) {
         return (position < headers.size());
     }
 
-    private boolean isFooter(int position) {
+    protected boolean isFooter(int position) {
         return footers.size() > 0 && (position >= getHeadersCount() + getRealItemCount());
     }
 
