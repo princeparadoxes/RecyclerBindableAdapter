@@ -115,8 +115,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
             return (VH) onCreateItemViewHolder(viewGroup, type);
             //else we have a header/footer
         } else {
-            //create a new framelayout, or inflate from a resource
-            FrameLayout frameLayout = new FrameLayout(viewGroup.getContext());
+            RecyclerContainer frameLayout = new RecyclerContainer(viewGroup.getContext(), false, false);
             //make sure it fills the space
             setHeaderFooterLayoutParams(frameLayout);
             return (VH) new HeaderFooterViewHolder(frameLayout);
@@ -329,6 +328,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         if (items.size() > 0 && (items.get(0) instanceof Parcelable
                 || items.get(0) instanceof Serializable)) {
             bundle.putSerializable(P_ITEMS, items);
+
         }
         return bundle;
     }

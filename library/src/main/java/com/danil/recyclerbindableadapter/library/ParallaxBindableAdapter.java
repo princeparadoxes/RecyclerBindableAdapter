@@ -6,14 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
 
-import com.danil.recyclerbindableadapter.library.view.ClipContainer;
-
 public abstract class ParallaxBindableAdapter<T, VH extends RecyclerView.ViewHolder>
         extends RecyclerBindableAdapter<T, VH> {
 
     private static final float SCROLL_MULTIPLIER = 0.5f;
-    private ClipContainer header;
-    private ClipContainer footer;
+    private RecyclerContainer header;
+    private RecyclerContainer footer;
     private OnParallaxScroll parallaxScroll;
     private boolean isParallaxHeader = true;
     private boolean isParallaxFooter = true;
@@ -40,7 +38,7 @@ public abstract class ParallaxBindableAdapter<T, VH extends RecyclerView.ViewHol
         }
     }
 
-    private void translateView(float of, ClipContainer view, boolean isFooter) {
+    private void translateView(float of, RecyclerContainer view, boolean isFooter) {
         float ofCalculated = of * SCROLL_MULTIPLIER;
         ofCalculated = isFooter ? -ofCalculated : ofCalculated;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -67,14 +65,14 @@ public abstract class ParallaxBindableAdapter<T, VH extends RecyclerView.ViewHol
             //else if we have a header
         } else if (type == TYPE_HEADER) {
             //create a new ParallaxContainer
-            header = new ClipContainer(viewGroup.getContext(), isParallaxHeader, false);
+            header = new RecyclerContainer(viewGroup.getContext(), isParallaxHeader, false);
             //make sure it fills the space
             setHeaderFooterLayoutParams(header);
             return (VH) new HeaderFooterViewHolder(header);
             //else we have a footer
         } else {
             //create a new ParallaxContainer
-            footer = new ClipContainer(viewGroup.getContext(), isParallaxFooter, true);
+            footer = new RecyclerContainer(viewGroup.getContext(), isParallaxFooter, true);
             //make sure it fills the space
             setHeaderFooterLayoutParams(footer);
             return (VH) new HeaderFooterViewHolder(footer);

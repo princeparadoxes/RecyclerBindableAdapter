@@ -3,7 +3,7 @@ package com.danil.recyclerbindableadapter.sample.simple;
 import android.view.View;
 import android.widget.TextView;
 
-import com.danil.recyclerbindableadapter.library.view.BindableViewHolder;
+import com.danil.recyclerbindableadapter.library.BindableViewHolder;
 import com.danil.recyclerbindableadapter.sample.R;
 
 import butterknife.Bind;

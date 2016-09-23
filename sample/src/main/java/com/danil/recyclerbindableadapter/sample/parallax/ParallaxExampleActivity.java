@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.danil.recyclerbindableadapter.library.SimpleParallaxBindableAdapter;
-import com.danil.recyclerbindableadapter.library.view.BindableViewHolder;
 import com.danil.recyclerbindableadapter.sample.R;
 
 import java.util.ArrayList;

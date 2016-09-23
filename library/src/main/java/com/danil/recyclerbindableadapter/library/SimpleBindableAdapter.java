@@ -3,8 +3,6 @@ package com.danil.recyclerbindableadapter.library;
 import android.support.annotation.LayoutRes;
 import android.view.View;
 
-import com.danil.recyclerbindableadapter.library.view.BindableViewHolder;
-
 import java.lang.reflect.InvocationTargetException;
 
 public final class SimpleBindableAdapter<T>

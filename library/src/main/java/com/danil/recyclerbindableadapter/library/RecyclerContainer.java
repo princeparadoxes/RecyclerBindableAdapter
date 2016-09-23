@@ -1,4 +1,4 @@
-package com.danil.recyclerbindableadapter.library.view;
+package com.danil.recyclerbindableadapter.library;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,15 +9,15 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.FrameLayout;
 
-public class ClipContainer extends FrameLayout {
+class RecyclerContainer extends FrameLayout {
 
     private boolean isParallax;
     private boolean isFooter;
     private int offset;
 
-    public ClipContainer(Context context, boolean shouldClick, boolean isFooter) {
+    public RecyclerContainer(Context context, boolean isParallax, boolean isFooter) {
         super(context);
-        isParallax = shouldClick;
+        this.isParallax = isParallax;
         this.isFooter = isFooter;
     }
 
@@ -35,6 +35,7 @@ public class ClipContainer extends FrameLayout {
     public void setOffset(int offset) {
         this.offset = offset;
     }
+
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
