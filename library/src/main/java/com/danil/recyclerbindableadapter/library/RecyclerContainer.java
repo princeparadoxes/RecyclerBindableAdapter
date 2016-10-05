@@ -6,6 +6,7 @@ import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -25,7 +26,7 @@ class RecyclerContainer extends FrameLayout {
     protected void dispatchDraw(@NonNull Canvas canvas) {
         if (isParallax) {
             int top = isFooter ? -offset : 0;
-            int bottom = isFooter ? getBottom() : getBottom() + offset;
+            int bottom = isFooter ? getBottom() - getTop() : getBottom() + offset;
             Rect rect = new Rect(getLeft(), top, getRight(), bottom);
             canvas.clipRect(rect);
         }
@@ -36,6 +37,32 @@ class RecyclerContainer extends FrameLayout {
         this.offset = offset;
     }
 
+    public RecyclerView.OnScrollListener getOnScrollListener() {
+        return new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                float temp;
+                if (isFooter) {
+                    temp = (float) ((recyclerView.getHeight() - getBottom()) * 0.5);
+                    temp = temp > 0 ? 0 : temp;
+                } else {
+                    temp = (float) (-getTop() * 0.5);
+                    temp = temp < 0 ? 0 : temp;
+
+                }
+                if (getTranslationY() == temp) return;
+                setTranslationY(temp);
+                setOffset(Math.round(temp));
+                invalidate();
+            }
+        };
+    }
 
     @Override
     protected void onRestoreInstanceState(Parcelable state) {
@@ -61,12 +88,30 @@ class RecyclerContainer extends FrameLayout {
     }
 
     public static class SavedState extends View.BaseSavedState {
+        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
+            @Override
+            public SavedState createFromParcel(Parcel source) {
+                return new SavedState(source);
+            }
+
+            @Override
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
         int offset;
         boolean isParallax;
         boolean isFooter;
 
         SavedState(Parcelable superState) {
             super(superState);
+        }
+
+        protected SavedState(Parcel in) {
+            super(in);
+            this.offset = in.readInt();
+            this.isParallax = in.readByte() != 0;
+            this.isFooter = in.readByte() != 0;
         }
 
         @Override
@@ -85,24 +130,5 @@ class RecyclerContainer extends FrameLayout {
             dest.writeByte(this.isParallax ? (byte) 1 : (byte) 0);
             dest.writeByte(this.isFooter ? (byte) 1 : (byte) 0);
         }
-
-        protected SavedState(Parcel in) {
-            super(in);
-            this.offset = in.readInt();
-            this.isParallax = in.readByte() != 0;
-            this.isFooter = in.readByte() != 0;
-        }
-
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
-            @Override
-            public SavedState createFromParcel(Parcel source) {
-                return new SavedState(source);
-            }
-
-            @Override
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-        };
     }
 }

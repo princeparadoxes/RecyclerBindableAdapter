@@ -25,8 +25,8 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
     private static final String P_HEADERS = "RecyclerBindableAdapter.headers";
     private static final String P_FOOTERS = "RecyclerBindableAdapter.footers";
 
-    private ArrayList<View> headers = new ArrayList<>();
-    private ArrayList<View> footers = new ArrayList<>();
+    protected ArrayList<View> headers = new ArrayList<>();
+    protected ArrayList<View> footers = new ArrayList<>();
     private ArrayList<T> items = new ArrayList<>();
 
     private RecyclerView.LayoutManager manager;
