@@ -8,20 +8,25 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 
 abstract class HeaderFooterAbstractLayer<T, VH extends RecyclerView.ViewHolder>
         extends BaseAbstractLayer<T, VH> {
 
-
     public static final int TYPE_HEADER = 7898;
     public static final int TYPE_FOOTER = 7899;
+
+    WeakReference<RecyclerView> recyclerViewWeakReference;
+
+    private boolean isParallaxHeader = false;
+    private boolean isParallaxFooter = false;
+
 
     protected ArrayList<View> headers = new ArrayList<>();
     protected ArrayList<View> footers = new ArrayList<>();
 
-    protected RecyclerView.LayoutManager manager;
     private GridLayoutManager.SpanSizeLookup spanSizeLookup = new GridLayoutManager.SpanSizeLookup() {
         @Override
         public int getSpanSize(int position) {
@@ -29,22 +34,9 @@ abstract class HeaderFooterAbstractLayer<T, VH extends RecyclerView.ViewHolder>
         }
     };
 
-    @Override
-    public VH onCreateViewHolder(ViewGroup viewGroup, int type) {
-        //if our position is one of our items (this comes from getItemViewType(int position) below)
-        if (type != TYPE_HEADER && type != TYPE_FOOTER) {
-            return (VH) onCreateItemViewHolder(viewGroup, type);
-            //else we have a header/footer
-        } else {
-            HeaderFooterContainer frameLayout = new HeaderFooterContainer(viewGroup.getContext(), false, false);
-            //make sure it fills the space
-            setHeaderFooterLayoutParams(frameLayout);
-            return (VH) new RecyclerBindableAdapter.HeaderFooterViewHolder(frameLayout);
-        }
-    }
-
     protected void setHeaderFooterLayoutParams(ViewGroup viewGroup) {
         ViewGroup.LayoutParams layoutParams;
+        RecyclerView.LayoutManager manager = recyclerViewWeakReference.get().getLayoutManager();
         if (manager instanceof LinearLayoutManager) {
             int orientation = ((LinearLayoutManager) manager).getOrientation();
             if (orientation == LinearLayoutManager.VERTICAL) {
@@ -59,6 +51,37 @@ abstract class HeaderFooterAbstractLayer<T, VH extends RecyclerView.ViewHolder>
                     ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
         viewGroup.setLayoutParams(layoutParams);
+    }
+
+    @Override
+    public VH onCreateViewHolder(ViewGroup viewGroup, int type) {
+        //if our position is one of our items (this comes from getItemViewType(int position) below)
+        if (type != TYPE_HEADER && type != TYPE_FOOTER) {
+            return (VH) onCreateItemViewHolder(viewGroup, type);
+            //else if we have a header
+        } else if (type == TYPE_HEADER) {
+            //create a new ParallaxContainer
+            HeaderFooterContainer header = new HeaderFooterContainer(viewGroup.getContext(),
+                    isParallaxHeader, false);
+            //make sure it fills the space
+            setHeaderFooterLayoutParams(header);
+            RecyclerView recyclerView = recyclerViewWeakReference.get();
+            if (recyclerView != null)
+                recyclerView.addOnScrollListener(header.getOnScrollListener());
+
+            return (VH) new HeaderFooterViewHolder(header);
+            //else we have a footer
+        } else {
+            //create a new ParallaxContainer
+            HeaderFooterContainer footer = new HeaderFooterContainer(viewGroup.getContext(),
+                    isParallaxFooter, true);
+            //make sure it fills the space
+            setHeaderFooterLayoutParams(footer);
+            RecyclerView recyclerView = recyclerViewWeakReference.get();
+            if (recyclerView != null)
+                recyclerView.addOnScrollListener(footer.getOnScrollListener());
+            return (VH) new HeaderFooterViewHolder(footer);
+        }
     }
 
     @Override
@@ -78,8 +101,10 @@ abstract class HeaderFooterAbstractLayer<T, VH extends RecyclerView.ViewHolder>
         }
     }
 
+
     protected void prepareHeaderFooter(RecyclerBindableAdapter.HeaderFooterViewHolder vh, View view) {
         //if it's a staggered grid, span the whole layout
+        RecyclerView.LayoutManager manager = recyclerViewWeakReference.get().getLayoutManager();
         if (manager instanceof StaggeredGridLayoutManager) {
             StaggeredGridLayoutManager.LayoutParams layoutParams = new StaggeredGridLayoutManager.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -130,17 +155,24 @@ abstract class HeaderFooterAbstractLayer<T, VH extends RecyclerView.ViewHolder>
     @Override
     public void onAttachedToRecyclerView(final RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-        if (manager == null) {
-            setManager(recyclerView.getLayoutManager());
-        }
+        recyclerViewWeakReference = new WeakReference<>(recyclerView);
+        updateLayoutManager();
     }
 
-    private void setManager(RecyclerView.LayoutManager manager) {
-        this.manager = manager;
-        if (this.manager instanceof GridLayoutManager) {
-            ((GridLayoutManager) this.manager).setSpanSizeLookup(spanSizeLookup);
-        } else if (this.manager instanceof StaggeredGridLayoutManager) {
-            ((StaggeredGridLayoutManager) this.manager).setGapStrategy(
+    public void setParallaxHeader(boolean isParallaxHeader) {
+        this.isParallaxHeader = isParallaxHeader;
+    }
+
+    public void setParallaxFooter(boolean isParallaxFooter) {
+        this.isParallaxFooter = isParallaxFooter;
+    }
+
+    public void updateLayoutManager() {
+        RecyclerView.LayoutManager manager = recyclerViewWeakReference.get().getLayoutManager();
+        if (manager instanceof GridLayoutManager) {
+            ((GridLayoutManager) manager).setSpanSizeLookup(spanSizeLookup);
+        } else if (manager instanceof StaggeredGridLayoutManager) {
+            ((StaggeredGridLayoutManager) manager).setGapStrategy(
                     StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
         }
     }
@@ -157,6 +189,7 @@ abstract class HeaderFooterAbstractLayer<T, VH extends RecyclerView.ViewHolder>
     }
 
     protected int getMaxGridSpan() {
+        RecyclerView.LayoutManager manager = recyclerViewWeakReference.get().getLayoutManager();
         if (manager instanceof GridLayoutManager) {
             return ((GridLayoutManager) manager).getSpanCount();
         } else if (manager instanceof StaggeredGridLayoutManager) {

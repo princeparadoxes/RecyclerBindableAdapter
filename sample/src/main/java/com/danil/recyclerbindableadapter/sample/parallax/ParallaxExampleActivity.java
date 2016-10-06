@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.danil.recyclerbindableadapter.library.SimpleParallaxBindableAdapter;
+import com.danil.recyclerbindableadapter.library.SimpleBindableAdapter;
 import com.danil.recyclerbindableadapter.sample.R;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class ParallaxExampleActivity extends AppCompatActivity {
     private static final int COUNT_ITEMS = 5;
     @Bind(R.id.parallax_example_recycle)
     RecyclerView parallaxExampleRecycler;
-    private SimpleParallaxBindableAdapter<String> parallaxExampleAdapter;
+    private SimpleBindableAdapter<String> parallaxExampleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class ParallaxExampleActivity extends AppCompatActivity {
         parallaxExampleRecycler.setItemAnimator(new DefaultItemAnimator());
 
         parallaxExampleAdapter =
-                new SimpleParallaxBindableAdapter<>(R.layout.parallax_example_item, ParallaxViewHolder.class);
+                new SimpleBindableAdapter<>(R.layout.parallax_example_item, ParallaxViewHolder.class);
         parallaxExampleAdapter.addHeader(inflateHeaderFooter(false));
         parallaxExampleAdapter.addHeader(inflateHeaderFooter(false));
         parallaxExampleAdapter.addHeader(inflateHeaderFooter(false));

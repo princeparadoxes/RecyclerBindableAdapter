@@ -5,6 +5,13 @@ import android.view.View;
 
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * Deprecated
+ * Use another class:
+ * @see SimpleBindableAdapter
+ * Start with 2.0 it supports parallax effect
+ */
+@Deprecated
 public final class SimpleParallaxBindableAdapter<T>
         extends ParallaxBindableAdapter<T, BindableViewHolder> {
 

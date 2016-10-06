@@ -9,10 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Danil on 06.10.2016.
- */
-
 abstract class BaseAbstractLayer<T, VH extends RecyclerView.ViewHolder>
         extends RecyclerView.Adapter<VH> {
     private static final String P_ITEMS = "RecyclerBindableAdapter.items";
