@@ -24,7 +24,7 @@ public abstract class ParallaxBindableAdapter<T, VH extends RecyclerView.ViewHol
             //else if we have a header
         } else if (type == TYPE_HEADER) {
             //create a new ParallaxContainer
-            RecyclerContainer header = new RecyclerContainer(viewGroup.getContext(), isParallaxHeader, false);
+            HeaderFooterContainer header = new HeaderFooterContainer(viewGroup.getContext(), isParallaxHeader, false);
             //make sure it fills the space
             setHeaderFooterLayoutParams(header);
             RecyclerView recyclerView = recyclerViewWeakReference.get();
@@ -35,7 +35,7 @@ public abstract class ParallaxBindableAdapter<T, VH extends RecyclerView.ViewHol
             //else we have a footer
         } else {
             //create a new ParallaxContainer
-            RecyclerContainer footer = new RecyclerContainer(viewGroup.getContext(), isParallaxFooter, true);
+            HeaderFooterContainer footer = new HeaderFooterContainer(viewGroup.getContext(), isParallaxFooter, true);
             //make sure it fills the space
             setHeaderFooterLayoutParams(footer);
             RecyclerView recyclerView = recyclerViewWeakReference.get();

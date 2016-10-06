@@ -10,13 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
 
-class RecyclerContainer extends FrameLayout {
+class HeaderFooterContainer extends FrameLayout {
 
     private boolean isParallax;
     private boolean isFooter;
     private int offset;
 
-    public RecyclerContainer(Context context, boolean isParallax, boolean isFooter) {
+    public HeaderFooterContainer(Context context, boolean isParallax, boolean isFooter) {
         super(context);
         this.isParallax = isParallax;
         this.isFooter = isFooter;
