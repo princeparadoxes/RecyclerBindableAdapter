@@ -18,7 +18,7 @@ abstract class HeaderFooterAbstractLayer<T, VH extends RecyclerView.ViewHolder>
     public static final int TYPE_HEADER = 7898;
     public static final int TYPE_FOOTER = 7899;
 
-    WeakReference<RecyclerView> recyclerViewWeakReference;
+    private WeakReference<RecyclerView> recyclerViewWeakReference;
 
     private boolean isParallaxHeader = false;
     private boolean isParallaxFooter = false;

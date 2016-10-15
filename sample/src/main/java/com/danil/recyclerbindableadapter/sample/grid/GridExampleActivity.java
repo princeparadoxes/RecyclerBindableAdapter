@@ -7,7 +7,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-
 import com.danil.recyclerbindableadapter.sample.R;
 
 import java.util.ArrayList;
@@ -64,12 +63,16 @@ public class GridExampleActivity extends AppCompatActivity implements GridViewHo
 
     @Override
     public void OnUp(int position) {
-        gridExampleAdapter.moveChildTo(position, position - 1);
+        if (position - 1 >= 0) {
+            gridExampleAdapter.moveChildTo(position, position - 1);
+        }
     }
 
     @Override
     public void OnDown(int position) {
-        gridExampleAdapter.moveChildTo(position, position + 1);
+        if (position + 1 < gridExampleAdapter.getNotFilteredItems().size()) {
+            gridExampleAdapter.moveChildTo(position, position + 1);
+        }
     }
 
     @Override

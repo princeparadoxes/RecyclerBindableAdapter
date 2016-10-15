@@ -16,6 +16,15 @@ abstract class BaseAbstractLayer<T, VH extends RecyclerView.ViewHolder>
     private ArrayList<T> items = new ArrayList<>();
     protected LayoutInflater inflater;
 
+    public abstract void add(T item);
+    public abstract void add(int position, T item);
+    public abstract void addAll(List<? extends T> items);
+    public abstract void addAll(int position, List<? extends T> items);
+    public abstract void set(int position, T item);
+    public abstract void removeChild(int position);
+    public abstract void clear();
+    public abstract void moveChildTo(int fromPosition, int toPosition);
+
     public int getRealItemCount() {
         return items.size();
     }

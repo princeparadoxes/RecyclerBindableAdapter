@@ -11,12 +11,13 @@ import com.danil.recyclerbindableadapter.library.filter.SupportDefaultFilter;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolder>
         extends RecyclerBindableAdapter<T, VH> {
 
     private final Object lock = new Object();
     private List<T> objects = new ArrayList<T>();
-    private ArrayFilter filter = new ArrayFilter();
+    private ArrayFilter filter = new SupportArrayFilter();
     private OnFilterObjectCallback onFilterObjectCallback;
     private CharSequence constraint = "";
 
@@ -70,11 +71,6 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
     @Override
     public long getItemId(int position) {
         return position;
-    }
-
-
-    public ArrayFilter setFilter(BindableAdapterFilter<T> filter) {
-        return this.filter.setFilter(filter);
     }
 
     /**
@@ -140,7 +136,6 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
         return null;
     }
 
-
     /**
      * Deprecated
      * Use delegates methods:
@@ -179,7 +174,12 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
         onFilterObjectCallback = objectCallback;
     }
 
-    private class ArrayFilter extends Filter {
+    @Override
+    public ArrayFilter setFilter(BindableAdapterFilter<T> filter) {
+        return super.setFilter(filter);
+    }
+
+    private class SupportArrayFilter extends ArrayFilter{
         private BindableAdapterFilter<T> filter = new DefaultFilter<>();
 
         private SupportBindableAdapterFilter supportFilter = new SupportDefaultFilter();

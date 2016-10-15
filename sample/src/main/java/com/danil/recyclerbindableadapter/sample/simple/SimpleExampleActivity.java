@@ -61,12 +61,16 @@ public class SimpleExampleActivity extends AppCompatActivity
 
     @Override
     public void OnUp(int position) {
-        simpleExampleAdapter.moveChildTo(position, position - 1);
+        if (position - 1 >= 0   ) {
+            simpleExampleAdapter.moveChildTo(position, position - 1);
+        }
     }
 
     @Override
     public void OnDown(int position) {
-        simpleExampleAdapter.moveChildTo(position, position + 1);
+        if (position + 1 < simpleExampleAdapter.getNotFilteredItems().size()) {
+            simpleExampleAdapter.moveChildTo(position, position + 1);
+        }
     }
 
     @Override

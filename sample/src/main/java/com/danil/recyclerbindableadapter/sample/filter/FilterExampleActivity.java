@@ -79,6 +79,7 @@ public class FilterExampleActivity extends AppCompatActivity implements TextWatc
 
     @Override
     public void onFilterComplete(int count) {
+        filterExampleAdapter.notifyDataSetChanged();
         noResultView.setVisibility(count > 0 ? View.GONE : View.VISIBLE);
     }
 

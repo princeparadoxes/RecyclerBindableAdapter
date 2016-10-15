@@ -1,63 +1,135 @@
 package com.danil.recyclerbindableadapter.library;
 
 import android.support.v7.widget.RecyclerView;
+import android.widget.Filter;
 
 import java.util.List;
 
 public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHolder>
-        extends HeaderFooterAbstractLayer<T, VH> {
+        extends FilterAbstractLayer<T, VH> {
 
-    public void add(int position, T item) {
-        getItems().add(position, item);
-        notifyItemInserted(position);
-        int positionStart = position + getHeadersCount();
-        int itemCount = getItems().size() - position;
-        notifyItemRangeChanged(positionStart, itemCount);
+    @Override
+    public void add(int position, final T item) {
+        notFilteredItems.add(position, item);
+        filter(constraint, new Filter.FilterListener() {
+            @Override
+            public void onFilterComplete(int count) {
+                int position = getItems().indexOf(item);
+                if (position == -1) return;
+                position = position + getHeadersCount();
+                notifyItemInserted(position);
+                int positionStart = position + getHeadersCount();
+                int itemCount = getItems().size() - position;
+                notifyItemRangeChanged(positionStart, itemCount);
+            }
+        });
     }
 
-    public void add(T item) {
-        getItems().add(item);
-        notifyItemInserted(getItems().size() - 1 + getHeadersCount());
+    @Override
+    public void add(final T item) {
+        notFilteredItems.add(item);
+        filter(constraint, new Filter.FilterListener() {
+            @Override
+            public void onFilterComplete(int count) {
+                int position = getItems().indexOf(item);
+                if (position == -1) return;
+                position = position + getHeadersCount();
+                notifyItemInserted(position);
+            }
+        });
     }
 
-    public void addAll(List<? extends T> items) {
-        final int size = getItems().size();
-        getItems().addAll(items);
-        notifyItemRangeInserted(size + getHeadersCount(), items.size());
+    @Override
+    public void addAll(final List<? extends T> items) {
+        notFilteredItems.addAll(items);
+        filter(constraint, new Filter.FilterListener() {
+            @Override
+            public void onFilterComplete(int count) {
+                for (T item : items) {
+                    int position = getItems().indexOf(item);
+                    if (position == -1) return;
+                    position = position + getHeadersCount();
+                    notifyItemInserted(position);
+                }
+            }
+        });
     }
 
-    public void addAll(int position, List<? extends T> items) {
-        getItems().addAll(position, items);
-        notifyItemRangeInserted(position + getHeadersCount(), items.size());
+    @Override
+    public void addAll(int position, final List<? extends T> items) {
+        notFilteredItems.addAll(position, items);
+        filter(constraint, new Filter.FilterListener() {
+            @Override
+            public void onFilterComplete(int count) {
+                for (T item : items) {
+                    int position = getItems().indexOf(item);
+                    if (position == -1) return;
+                    position = position + getHeadersCount();
+                    notifyItemInserted(position);
+                }
+            }
+        });
     }
 
-    public void set(int position, T item) {
-        getItems().set(position, item);
-        notifyItemChanged(position + getHeadersCount());
+    @Override
+    public void set(int position, final T item) {
+        notFilteredItems.set(position, item);
+        filter(constraint, new Filter.FilterListener() {
+            @Override
+            public void onFilterComplete(int count) {
+                int position = getItems().indexOf(item);
+                if (position == -1) return;
+                position = position + getHeadersCount();
+                notifyItemChanged(position);
+            }
+        });
     }
 
+    @Override
     public void removeChild(int position) {
-        getItems().remove(position);
-        notifyItemRemoved(position + getHeadersCount());
-        int positionStart = position + getHeadersCount();
-        int itemCount = getItems().size() - position;
-        notifyItemRangeChanged(positionStart, itemCount);
+        final T item = notFilteredItems.get(position);
+        final int showedPosition = getHeadersCount() + getItems().indexOf(item);
+        notFilteredItems.remove(position);
+        filter(constraint, new Filter.FilterListener() {
+            @Override
+            public void onFilterComplete(int count) {
+                int position = getItems().indexOf(item);
+                if (position == -1) {
+                    notifyItemRemoved(showedPosition);
+                    int size = getItemCount() - showedPosition - getFootersCount();
+                    notifyItemRangeChanged(showedPosition, size);
+                }
+            }
+        });
     }
 
+    @Override
     public void clear() {
         final int size = getItems().size();
-        getItems().clear();
-        notifyItemRangeRemoved(getHeadersCount(), size);
+        notFilteredItems.clear();
+        filter(constraint, new Filter.FilterListener() {
+            @Override
+            public void onFilterComplete(int count) {
+                notifyItemRangeRemoved(getHeadersCount(), size);
+            }
+        });
     }
 
+    @Override
     public void moveChildTo(int fromPosition, int toPosition) {
-        if (toPosition != -1 && toPosition < getItems().size()) {
-            final T item = getItems().remove(fromPosition);
-            getItems().add(toPosition, item);
-            notifyItemMoved(getHeadersCount() + fromPosition, getHeadersCount() + toPosition);
-            int positionStart = fromPosition < toPosition ? fromPosition : toPosition;
-            int itemCount = Math.abs(fromPosition - toPosition) + 1;
-            notifyItemRangeChanged(positionStart + getHeadersCount(), itemCount);
-        }
+        final T item = notFilteredItems.remove(fromPosition);
+        final int fromPositionShowed = getHeadersCount() + getItems().indexOf(item);
+        notFilteredItems.add(toPosition, item);
+        filter(constraint, new Filter.FilterListener() {
+            @Override
+            public void onFilterComplete(int count) {
+                int toPositionShowed = getHeadersCount() + getItems().indexOf(item);
+                notifyItemMoved(fromPositionShowed, toPositionShowed);
+                int positionStart = fromPositionShowed < toPositionShowed ? fromPositionShowed : toPositionShowed;
+                int itemCount = Math.abs(fromPositionShowed - toPositionShowed) + 1;
+                notifyItemRangeChanged(positionStart, itemCount);
+            }
+        });
+
     }
 }

@@ -3,9 +3,12 @@ package com.danil.recyclerbindableadapter.sample.filter;
 import android.view.View;
 
 import com.danil.recyclerbindableadapter.library.FilterBindableAdapter;
+import com.danil.recyclerbindableadapter.library.RecyclerBindableAdapter;
 import com.danil.recyclerbindableadapter.sample.R;
 
-public class FilterExampleAdapter extends FilterBindableAdapter<Person, FilterViewHolder> {
+import java.util.List;
+
+public class FilterExampleAdapter extends RecyclerBindableAdapter<Person, FilterViewHolder> {
 
 
     @Override
@@ -21,5 +24,11 @@ public class FilterExampleAdapter extends FilterBindableAdapter<Person, FilterVi
     @Override
     protected FilterViewHolder viewHolder(View view, int type) {
         return new FilterViewHolder(view);
+    }
+
+    @Override
+    public void addAll(List<? extends Person> items) {
+        clear();
+        super.addAll(items);
     }
 }

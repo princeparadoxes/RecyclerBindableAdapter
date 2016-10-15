@@ -47,6 +47,7 @@ class HeaderFooterContainer extends FrameLayout {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                if (!isParallax) return;
                 float temp;
                 if (isFooter) {
                     temp = (float) ((recyclerView.getHeight() - getBottom()) * 0.5);

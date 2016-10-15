@@ -96,12 +96,16 @@ public class LinearExampleActivity extends AppCompatActivity implements LinearVi
 
     @Override
     public void OnUp(int position) {
-        linearExampleAdapter.moveChildTo(position, position - 1);
+        if (position - 1 >= 0) {
+            linearExampleAdapter.moveChildTo(position, position - 1);
+        }
     }
 
     @Override
     public void OnDown(int position) {
-        linearExampleAdapter.moveChildTo(position, position + 1);
+        if (position + 1 < linearExampleAdapter.getNotFilteredItems().size()) {
+            linearExampleAdapter.moveChildTo(position, position + 1);
+        }
     }
 
     @Override
