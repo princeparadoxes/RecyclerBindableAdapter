@@ -10,7 +10,6 @@ import java.util.List;
 
 public class FilterExampleAdapter extends RecyclerBindableAdapter<Person, FilterViewHolder> {
 
-
     @Override
     protected int layoutId(int type) {
         return R.layout.filter_example_item;

@@ -11,12 +11,13 @@ import java.util.List;
 
 abstract class FilterAbstractLayer<T, VH extends RecyclerView.ViewHolder>
         extends HeaderFooterAbstractLayer<T, VH> {
-    private final Object lock = new Object();
+
+    protected final Object notFilteredItemsLock = new Object();
     protected List<T> notFilteredItems = new ArrayList<T>();
     private ArrayFilter filter = new ArrayFilter();
     protected CharSequence constraint = "";
 
-    protected void notifyChanged(){
+    protected void notifyChanged() {
         filter(constraint, new Filter.FilterListener() {
             @Override
             public void onFilterComplete(int count) {
@@ -101,7 +102,7 @@ abstract class FilterAbstractLayer<T, VH extends RecyclerView.ViewHolder>
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
             ArrayList<T> values;
-            synchronized (lock) {
+            synchronized (notFilteredItemsLock) {
                 values = new ArrayList<T>(getNotFilteredItems());
             }
             if (constraint == null || constraint.length() == 0) {
