@@ -6,13 +6,13 @@ import android.widget.TextView;
 import com.danil.recyclerbindableadapter.library.view.BindableViewHolder;
 import com.danil.recyclerbindableadapter.sample.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SimpleViewHolder extends BindableViewHolder<Integer, SimpleViewHolder.SimpleActionListener> {
 
-    @Bind(R.id.simple_example_item_tittle)
+    @BindView(R.id.simple_example_item_tittle)
     TextView tittle;
 
     private int position;

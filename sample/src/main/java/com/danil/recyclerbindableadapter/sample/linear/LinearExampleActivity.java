@@ -13,15 +13,15 @@ import com.danil.recyclerbindableadapter.sample.R;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
 import butterknife.BindString;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LinearExampleActivity extends AppCompatActivity implements LinearViewHolder.ActionListener {
 
     private static final int COUNT_ITEMS = 10;
     public static final String KEY = "LinearExampleActivity.adapter.items";
-    @Bind(R.id.linear_example_recycle)
+    @BindView(R.id.linear_example_recycle)
     RecyclerView linearExampleRecycler;
     @BindString(R.string.linear_example_header_1)
     String headerOne;

@@ -4,17 +4,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-
 import com.danil.recyclerbindableadapter.sample.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class FilterViewHolder extends RecyclerView.ViewHolder {
 
-    @Bind(R.id.filter_example_first_name)
+    @BindView(R.id.filter_example_first_name)
     TextView firstNameField;
-    @Bind(R.id.filter_example_last_name)
+    @BindView(R.id.filter_example_last_name)
     TextView lastNameField;
 
 

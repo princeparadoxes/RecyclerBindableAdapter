@@ -7,12 +7,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-
 import com.danil.recyclerbindableadapter.sample.R;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class GridExampleActivity extends AppCompatActivity implements GridViewHolder.ActionListener {
@@ -20,7 +19,7 @@ public class GridExampleActivity extends AppCompatActivity implements GridViewHo
     private static final int COUNT_ITEMS = 20;
     public static final String KEY = "GridExampleActivity.adapter.items";
 
-    @Bind(R.id.grid_example_recycler)
+    @BindView(R.id.grid_example_recycler)
     RecyclerView gridExampleRecycler;
 
     private GridExampleAdapter gridExampleAdapter;
