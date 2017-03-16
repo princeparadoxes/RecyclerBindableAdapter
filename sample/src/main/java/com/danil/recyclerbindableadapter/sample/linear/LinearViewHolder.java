@@ -4,16 +4,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-
 import com.danil.recyclerbindableadapter.sample.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LinearViewHolder extends RecyclerView.ViewHolder {
 
-    @Bind(R.id.linear_example_item_text)
+    @BindView(R.id.linear_example_item_text)
     TextView text;
 
     private int position;

@@ -5,16 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-
 import com.danil.recyclerbindableadapter.sample.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class GridViewHolder extends RecyclerView.ViewHolder {
 
-    @Bind(R.id.grid_example_item_tittle)
+    @BindView(R.id.grid_example_item_tittle)
     TextView tittle;
 
     private int position;

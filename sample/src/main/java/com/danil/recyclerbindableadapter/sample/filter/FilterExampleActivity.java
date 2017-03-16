@@ -14,18 +14,18 @@ import android.widget.Filter;
 import com.danil.recyclerbindableadapter.library.filter.BindableAdapterFilter;
 import com.danil.recyclerbindableadapter.sample.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class FilterExampleActivity extends AppCompatActivity implements TextWatcher,
         Filter.FilterListener {
 
-    @Bind(R.id.filter_example_recycle)
+    @BindView(R.id.filter_example_recycle)
     protected RecyclerView filterExampleRecycler;
-    @Bind(R.id.filter_example_edit_text)
+    @BindView(R.id.filter_example_edit_text)
     protected EditText filterEditText;
-    @Bind(R.id.filter_example_no_result)
+    @BindView(R.id.filter_example_no_result)
     protected View noResultView;
 
     boolean anotherData = false;

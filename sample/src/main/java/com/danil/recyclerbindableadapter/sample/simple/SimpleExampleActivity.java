@@ -12,14 +12,14 @@ import com.danil.recyclerbindableadapter.sample.R;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SimpleExampleActivity extends AppCompatActivity
         implements SimpleViewHolder.SimpleActionListener {
 
     private static final int COUNT_ITEMS = 20;
-    @Bind(R.id.simple_example_recycle)
+    @BindView(R.id.simple_example_recycle)
     RecyclerView simpleExampleRecycler;
     private SimpleBindableAdapter<Integer> simpleExampleAdapter;
 

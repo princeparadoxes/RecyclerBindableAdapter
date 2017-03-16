@@ -10,18 +10,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.danil.recyclerbindableadapter.library.SimpleParallaxBindableAdapter;
-import com.danil.recyclerbindableadapter.library.view.BindableViewHolder;
 import com.danil.recyclerbindableadapter.sample.R;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ParallaxExampleActivity extends AppCompatActivity {
 
     private static final int COUNT_ITEMS = 5;
-    @Bind(R.id.parallax_example_recycle)
+    @BindView(R.id.parallax_example_recycle)
     RecyclerView parallaxExampleRecycler;
     private SimpleParallaxBindableAdapter<String> parallaxExampleAdapter;
 
