@@ -1,0 +1,18 @@
+// ======================================================================================================
+// A good sample of dependency gradle file:
+// https://github.com/artem-zinnatullin/qualitymatters/blob/master/dependencies.gradle
+// ======================================================================================================
+
+// Application Dependencies versions
+ext.versions = [
+
+        versionName   : VERSION_NAME as String,
+        versionCode   : VERSION_CODE as int,
+
+        minSdk        : 14,
+        targetSdk     : 25,
+        compileSdk    : 25,
+        buildTools    : '25.0.2',
+
+        supportLibrary: '25.3.1',
+]

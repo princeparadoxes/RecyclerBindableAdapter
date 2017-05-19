@@ -1,17 +1,15 @@
 apply plugin: 'com.android.library'
-
-String versionNameRoot = rootProject.versionName
-int versionCodeRoot = rootProject.versionCode
+apply from: "$rootDir/versions.gradle"
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "23.0.3"
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 23
-        versionCode versionCodeRoot
-        versionName versionNameRoot
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
     }
     buildTypes {
         release {
@@ -22,9 +20,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:recyclerview-v7:25.1.0'
+    compile "com.android.support:recyclerview-v7:${versions.supportLibrary}"
 }
 
 apply from: '../gradle/deploy.gradle'

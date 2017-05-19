@@ -132,7 +132,10 @@ abstract class FilterAbstractLayer<T, VH extends RecyclerView.ViewHolder>
         protected void publishResults(CharSequence constraint, FilterResults results) {
             getItems().clear();
             //noinspection unchecked
-            getItems().addAll((List<T>) results.values);
+            List<T> resultList = (List<T>) results.values;
+            getItems().addAll(resultList);
+            notifyDataSetChanged();
+//            notifyItemRangeInserted(0, resultList.size());
         }
     }
 }

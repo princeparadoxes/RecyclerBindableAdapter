@@ -107,12 +107,8 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
     public void clear() {
         final int size = getItems().size();
         notFilteredItems.clear();
-        filter(constraint, new Filter.FilterListener() {
-            @Override
-            public void onFilterComplete(int count) {
-                notifyItemRangeRemoved(getHeadersCount(), size);
-            }
-        });
+        getItems().clear();
+        notifyItemRangeRemoved(getHeadersCount(), size);
     }
 
     @Override
