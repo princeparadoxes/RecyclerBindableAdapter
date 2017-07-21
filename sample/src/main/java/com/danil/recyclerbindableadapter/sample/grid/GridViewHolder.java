@@ -1,6 +1,5 @@
 package com.danil.recyclerbindableadapter.sample.grid;
 
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -10,6 +9,7 @@ import com.danil.recyclerbindableadapter.sample.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Optional;
 
 public class GridViewHolder extends RecyclerView.ViewHolder {
 
@@ -30,7 +30,7 @@ public class GridViewHolder extends RecyclerView.ViewHolder {
         tittle.setText(String.valueOf(item.getValue()));
     }
 
-    @Nullable
+    @Optional
     @OnClick(R.id.grid_example_item_move_to_top)
     protected void OnMoveToTopClick() {
         if (actionListener != null) {
@@ -38,7 +38,7 @@ public class GridViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    @Nullable
+    @Optional
     @OnClick(R.id.grid_example_item_remove)
     protected void OnRemoveClick() {
         if (actionListener != null) {
@@ -46,7 +46,7 @@ public class GridViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    @Nullable
+    @Optional
     @OnClick(R.id.grid_example_item_up)
     protected void OnUpClick() {
         if (actionListener != null) {
@@ -54,7 +54,7 @@ public class GridViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    @Nullable
+    @Optional
     @OnClick(R.id.grid_example_item_down)
     protected void OnDownClick() {
         if (actionListener != null) {
@@ -68,7 +68,7 @@ public class GridViewHolder extends RecyclerView.ViewHolder {
         tittle.setText(String.valueOf(item.getValue()));
     }
 
-    @Nullable
+    @Optional
     @OnClick(R.id.grid_example_item_add_to)
     protected void OnAddToClick() {
         if (actionListener != null) {
@@ -76,7 +76,7 @@ public class GridViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    @Nullable
+    @Optional
     @OnClick(R.id.grid_example_item_set)
     protected void OnSetClick() {
         if (actionListener != null) {

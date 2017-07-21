@@ -200,7 +200,7 @@ public abstract class RecyclerBindableAdapter<T, VH extends RecyclerView.ViewHol
         } else if (isFooter(position)) {
             return TYPE_FOOTER;
         }
-        int type = getItemType(position);
+        int type = getItemType(position - getHeadersCount());
         if (type == TYPE_HEADER || type == TYPE_FOOTER) {
             throw new IllegalArgumentException("Item type cannot equal " + TYPE_HEADER + " or " + TYPE_FOOTER);
         }
