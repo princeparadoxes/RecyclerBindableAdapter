@@ -79,11 +79,11 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
 
     /**
      * Delegate Filter method
-     * <p>
-     * <p>Converts a value from the filtered set into a CharSequence. Subclasses
+     *
+     * Converts a value from the filtered set into a CharSequence. Subclasses
      * should override this method to convert their results. The default
      * implementation returns an empty String for null values or the default
-     * String representation of the value.</p>
+     * String representation of the value.
      *
      * @param resultValue the value to convert to a CharSequence
      * @return a CharSequence representing the value
@@ -94,15 +94,15 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
 
     /**
      * Delegate Filter method
-     * <p>
+     *
      * Saves contrait to field for filter on add new items
      *
      * @param constraint the constraint used to filter the data
      * @see #addAll
-     * <p>
-     * <p>Starts an asynchronous filtering operation. Calling this method
+     *
+     * Starts an asynchronous filtering operation. Calling this method
      * cancels all previous non-executed filtering requests and posts a new
-     * filtering request that will be executed later.</p>
+     * filtering request that will be executed later.
      * @see #filter(CharSequence, android.widget.Filter.FilterListener)
      */
     public void filter(CharSequence constraint) {
@@ -112,12 +112,12 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
 
     /**
      * Delegate Filter method
-     * <p>
-     * <p>Starts an asynchronous filtering operation. Calling this method
+     *
+     * Starts an asynchronous filtering operation. Calling this method
      * cancels all previous non-executed filtering requests and posts a new
-     * filtering request that will be executed later.</p>
-     * <p>
-     * <p>Upon completion, the listener is notified.</p>
+     * filtering request that will be executed later.
+     *
+     * Upon completion, the listener is notified.
      *
      * @param constraint the constraint used to filter the data
      * @param listener   a listener notified upon completion of the operation
@@ -130,8 +130,8 @@ public abstract class FilterBindableAdapter<T, VH extends RecyclerView.ViewHolde
 
     /**
      * Deprecated
-     * Use setFilter(BindableAdapterFilter<T> filter)
-     * <p>
+     * Use setFilter(BindableAdapterFilter filter)
+     *
      * Override this method for convert you item to String.
      * This string will be used for filter your items
      */
